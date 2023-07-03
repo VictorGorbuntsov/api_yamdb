@@ -6,6 +6,7 @@ from reviews.validators import validate_year
 
 class CategorySerializer(serializers.ModelSerializer):
 
+
     class Meta:
         model = Category
         fields = '__all__'
