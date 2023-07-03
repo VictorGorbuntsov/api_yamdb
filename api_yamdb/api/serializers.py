@@ -3,9 +3,8 @@ from rest_framework import serializers
 from reviews.models import Category, Genre, Title
 from reviews.validators import validate_year
 
-
+#TODO: Delete me
 class CategorySerializer(serializers.ModelSerializer):
-
 
     class Meta:
         model = Category
