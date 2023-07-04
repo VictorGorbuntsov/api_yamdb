@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from reviews.views import MyUserViewSet, sign_up, get_token
+from .views import MyUserViewSet, sign_up, get_token
 
 router = routers.DefaultRouter()
 
