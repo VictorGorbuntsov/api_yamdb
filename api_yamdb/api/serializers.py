@@ -97,7 +97,7 @@ class SignUpSerializer(serializers.Serializer):
 
 
 class TokenSerializer(serializers.Serializer):
-    """Cериализатор получения токена."""
+    """Cериализатор получения токена"""
 
     username = serializers.CharField(max_length=150, required=True)
     confirmation_code = serializers.CharField(required=True)
