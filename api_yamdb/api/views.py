@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, status, viewsets
+from rest_framework import filters, status, mixins, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -89,22 +89,24 @@ def get_token(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.GenericViewSet,
+                      mixins.ListModelMixin,
+                      mixins.DestroyModelMixin,
+                      mixins.CreateModelMixin):
     """Представление категорий."""
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     filter_backends = [filters.SearchFilter]
+    permission_classes = (OnlyRead | IsAdmin,)
     search_fields = ('name',)
     lookup_field = 'slug'
 
-    def get_permissions(self):
-        if self.action == 'list':
-            return (AllowAny(),)
-        return (IsAdmin(),)
 
-
-class GenreViewSet(viewsets.ModelViewSet):
+class GenreViewSet(viewsets.GenericViewSet,
+                   mixins.ListModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.CreateModelMixin):
     """Представление жанров."""
 
     queryset = Genre.objects.all()
@@ -125,8 +127,8 @@ class TitleViewSet(viewsets.ModelViewSet):
     queryset = Title.objects.all().annotate(Avg('reviews__score')).\
         select_related('category').prefetch_related('genre')
     serializer_class = TitleSerializer
-    permission_classes = (OnlyRead, IsAdmin,)
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    permission_classes = (OnlyRead | IsAdmin,)
     filterset_fields = ('name', 'year', 'category__slug', 'genre__slug',)
     ordering_fields = ['name', 'year']
 

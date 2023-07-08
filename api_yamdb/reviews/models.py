@@ -13,7 +13,7 @@ USER_ROLES = (
 
 class MyUser(AbstractUser):
     username = models.CharField(
-        max_length=154,
+        max_length=150,
         unique=True,
         verbose_name='Имя пользователя'
     )
@@ -22,7 +22,6 @@ class MyUser(AbstractUser):
         blank=True
     )
     email = models.EmailField(
-        max_length=254,
         unique=True,
         verbose_name='Адрес электронной почты',
     )
@@ -94,8 +93,8 @@ class Genre(models.Model):
 class Title(models.Model):
     """Наименование и атрибуты произведений."""
 
-    name = models.CharField(max_length=256, blank=False)
-    year = models.IntegerField(validators=[validate_year])
+    name = models.CharField(max_length=150, unique=True)
+    year = models.IntegerField('Дата выпуска')
     rating = models.FloatField(null=True)
     description = models.TextField(max_length=300, blank=True)
     genre = models.ManyToManyField(
