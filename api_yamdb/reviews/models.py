@@ -1,12 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-<<<<<<< HEAD
 from django.core.validators import MaxValueValidator
-
-from .validators import validate_year
-=======
-
->>>>>>> a2f300a (qwqw)
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -16,28 +10,18 @@ USER_ROLES = (
 
 
 class MyUser(AbstractUser):
-<<<<<<< HEAD
+
     username = models.CharField(
         max_length=150,
         unique=True,
         verbose_name='Имя пользователя'
     )
-=======
-    # username = models.CharField(
-    #     max_length=154,
-    #     unique=True,
-    #     verbose_name='Имя пользователя'
-    # )
->>>>>>> a2f300a (qwqw)
     bio = models.TextField(
         verbose_name='Биография пользователя',
         blank=True
     )
     email = models.EmailField(
-<<<<<<< HEAD
-=======
         max_length=254,
->>>>>>> a2f300a (qwqw)
         unique=True,
         verbose_name='Адрес электронной почты',
     )
@@ -80,7 +64,6 @@ class MyUser(AbstractUser):
             return True
         else:
             return False
-<<<<<<< HEAD
 
 
 class Category(models.Model):
@@ -171,5 +154,3 @@ class Comment(models.Model):
     )
     text = models.TextField(verbose_name='Текст')
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
-=======
->>>>>>> a2f300a (qwqw)

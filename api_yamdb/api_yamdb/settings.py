@@ -1,10 +1,6 @@
 from pathlib import Path
 import os
 from datetime import timedelta
-<<<<<<< HEAD
-=======
-
->>>>>>> a2f300a (qwqw)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,20 +22,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
 
     'rest_framework',
     'reviews',
     'api',
-    'django_filters',
-    'rest_framework_simplejwt',
-=======
-    'rest_framework',
-    'reviews',
-    'api',
     'rest_framework_simplejwt',
     'django_filters',
->>>>>>> a2f300a (qwqw)
 ]
 
 MIDDLEWARE = [
@@ -141,11 +129,7 @@ SIMPLE_JWT = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-<<<<<<< HEAD
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
->>>>>>> a2f300a (qwqw)
