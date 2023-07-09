@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from django.core.validators import MaxValueValidator
+
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -10,12 +12,12 @@ USER_ROLES = (
 
 
 class MyUser(AbstractUser):
-
     username = models.CharField(
         max_length=150,
         unique=True,
         verbose_name='Имя пользователя'
     )
+
     bio = models.TextField(
         verbose_name='Биография пользователя',
         blank=True

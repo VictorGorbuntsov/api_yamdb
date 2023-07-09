@@ -66,7 +66,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class MyUserSerializer(serializers.ModelSerializer):
-    """Сериализатор для Юзера."""
+    """Сериализатор для Юзера"""
 
     class Meta:
         model = MyUser
@@ -78,6 +78,7 @@ class MyUserSerializer(serializers.ModelSerializer):
             'bio',
             'role',
         )
+
 
 
 class SignUpSerializer(serializers.Serializer):
@@ -96,6 +97,7 @@ class SignUpSerializer(serializers.Serializer):
         fields = ('username', 'email',)
 
 
+
 class TokenSerializer(serializers.Serializer):
     """Cериализатор получения токена"""
 
@@ -108,7 +110,7 @@ class TokenSerializer(serializers.Serializer):
 
 
 class MeSerializer(serializers.ModelSerializer):
-    """Сериализатор для эндпоинта users/me."""
+    """Сериализатор для эндпоинта users/me"""
 
     role = serializers.CharField(read_only=True)
 
