@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from django.core.validators import MaxValueValidator
 
-from .validators import validate_year
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -17,11 +17,13 @@ class MyUser(AbstractUser):
         unique=True,
         verbose_name='Имя пользователя'
     )
+
     bio = models.TextField(
         verbose_name='Биография пользователя',
         blank=True
     )
     email = models.EmailField(
+        max_length=254,
         unique=True,
         verbose_name='Адрес электронной почты',
     )
