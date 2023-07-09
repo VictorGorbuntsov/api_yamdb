@@ -24,6 +24,7 @@ class MyUserViewSet(viewsets.ModelViewSet):
     """Вьюсет для Юзера"""
     queryset = MyUser.objects.all()
     serializer_class = MyUserSerializer
+    permission_classes = (IsAdmin,)
     filter_backends = (filters.SearchFilter,)
     search_field = 'username'
     lookup_field = 'username'
