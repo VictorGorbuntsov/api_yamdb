@@ -1,7 +1,7 @@
 from rest_framework import filters, viewsets
 from rest_framework.generics import get_object_or_404
 from rest_framework_simplejwt.tokens import AccessToken
-from .permissions import IsAdmin, OnlyRead, AuthorOrStuffOrReadOnly
+from .permissions import IsAdmin, OnlyRead, IsOwner, Author, Moderator
 from rest_framework.permissions import (IsAuthenticatedOrReadOnly)
 from rest_framework.viewsets import ModelViewSet
 
@@ -22,8 +22,9 @@ from api.serializers import (
     SignUpSerializer,
     TitleCreateAndUpdateSerializer,
     TitleSerializer,
-    TokenSerializer,)
-from api.serializers import (CommentSerializer, ReviewSerializer,)
+    TokenSerializer,
+    CommentSerializer,
+    ReviewSerializer)
 
 from reviews.models import Category, Genre, MyUser, Title, Review
 
@@ -159,7 +160,7 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 class ReviewViewSet(ModelViewSet):
     serializer_class = ReviewSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, AuthorOrStuffOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwner,)
 
     def get_title(self):
         return get_object_or_404(Title, id=self.kwargs.get('title_id'))
@@ -173,7 +174,7 @@ class ReviewViewSet(ModelViewSet):
 
 class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, AuthorOrStuffOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwner,)
 
     def get_review_object(self):
         return get_object_or_404(Review, id=self.kwargs.get('review_id'))
