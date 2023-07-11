@@ -25,6 +25,8 @@ class MyUser(AbstractUser):
     email = models.EmailField(
         max_length=254,
         unique=True,
+        blank=False,
+        null=False,
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
@@ -34,7 +36,7 @@ class MyUser(AbstractUser):
         verbose_name='Роль пользователя'
     )
     confirmation_code = models.CharField(
-        max_length=32,
+        max_length=300,
         blank=True,
         verbose_name='Код входа'
     )
@@ -62,7 +64,7 @@ class MyUser(AbstractUser):
 
     @property
     def is_admin(self):
-        if self.role == 'admin':
+        if self.role == 'admin' or self.is_superuser:
             return True
         else:
             return False
