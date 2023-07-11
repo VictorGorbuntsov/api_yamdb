@@ -14,19 +14,15 @@ from rest_framework import filters, status, mixins, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from api.serializers import (
-    CategorySerializer,
-    GenreSerializer,
-    MeSerializer,
-    MyUserSerializer,
-    SignUpSerializer,
-    TitleCreateAndUpdateSerializer,
-    TitleSerializer,
-    TokenSerializer,
-    CommentSerializer,
-    ReviewSerializer)
 
-from reviews.models import Category, Genre, MyUser, Title, Review
+from api.serializers import (CategorySerializer, GenreSerializer, MeSerializer,
+                             MyUserSerializer, SignUpSerializer,
+                             TitleCreateAndUpdateSerializer, TitleSerializer,
+                             TokenSerializer, CommentSerializer,
+                             ReviewSerializer)
+from reviews.models import Category, Genre, MyUser, Title, Review, Comment
+
+from .permissions import IsAdmin, OnlyRead, IsOwner, Author, Moderator
 
 
 class MyUserViewSet(viewsets.ModelViewSet):
