@@ -1,77 +1,55 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
 from rest_framework.generics import get_object_or_404
-
-from reviews.models import Category, Genre, MyUser, Title, Comment, Review
+from reviews.models import Category, Genre, Title, Comment, Review, MyUser
 from reviews.validators import validate_year
+from rest_framework.exceptions import ValidationError
+from rest_framework.serializers import (ModelSerializer,
+                                        SlugRelatedField, IntegerField)
+from django.core.validators import (MaxValueValidator, MinValueValidator)
+
+ERROR_REVIEW_AUTHOR_UNIQUE = (
+    'Нельзя оставлять несколько отзывов на одно произведение'
+)
 
 
-class ReviewCreateSerializer(serializers.ModelSerializer):
-    """Сериализатор для создания отзывов."""
-    author = serializers.SlugRelatedField(
-        slug_field="user_name",
+class ReviewSerializer(ModelSerializer):
+    author = SlugRelatedField(
         read_only=True,
+        slug_field='username'
     )
-    score = serializers.IntegerField(min_value=0, max_value=10)
+    score = IntegerField(
+        validators=(MinValueValidator(1), MaxValueValidator(10))
+    )
+
+    class Meta:
+        model = Review
+        fields = ('id', 'text', 'author', 'score', 'pub_date',)
 
     def validate(self, data):
-        if self.context['request'].method != 'POST':
+        if self.context.get('request').method != 'POST':
             return data
-        title = get_object_or_404(
-            id=self.context['request'].parser_context['kwargs']['title_id']
-        )
-        if Review.objects.filter(
-            author=self.context['request'].user,
-            title=title
-        ).exists():
-            raise serializers.ValidationError('Отзыв уже оставлен')
+        reviewer = self.context.get('request').user
+        if get_object_or_404(
+                Title, id=self.context.get('view').kwargs.get('title_id')
+        ).reviews.filter(author=reviewer):
+            raise ValidationError(ERROR_REVIEW_AUTHOR_UNIQUE)
         return data
 
-    class Meta:
-        fields = '__all__'
-        model = Review
-        read_only = 'id'
 
-
-class CommentSerializer(serializers.ModelSerializer):
-    """Сериализатор для работы с комментариями."""
-    review = serializers.SlugRelatedField(
-        slug_field="text",
+class CommentSerializer(ModelSerializer):
+    author = SlugRelatedField(
         read_only=True,
-    )
-    author = serializers.SlugRelatedField(
-        slug_field="user_name",
-        read_only=True,
+        slug_field='username'
     )
 
     class Meta:
-        fields = '__all__'
         model = Comment
-        read_only = 'id'
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    """Сериализатор для работы с отзывами."""
-    author = serializers.SlugRelatedField(
-        slug_field="user_name",
-        read_only=True,
-    )
-    score = serializers.IntegerField(min_value=0, max_value=10)
-
-    class Meta:
-        fields = '__all__'
-        model = Review
-        read_only = 'id'
+        fields = ('id', 'text', 'author', 'pub_date',)
 
 
 class MyUserSerializer(serializers.ModelSerializer):
     """Сериализатор для Юзера"""
-    # username = serializers.RegexField(
-    #     regex=r'^[\w.@+-]+$',
-    #     max_length=150,
-    #     required=True
-    # )
 
     class Meta:
         model = MyUser
