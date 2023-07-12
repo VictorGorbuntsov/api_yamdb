@@ -67,11 +67,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class MyUserSerializer(serializers.ModelSerializer):
     """Сериализатор для Юзера"""
-    username = serializers.RegexField(
-        regex=r'^[\w.@+-]+$',
-        max_length=150,
-        required=True
-    )
+    # username = serializers.RegexField(
+    #     regex=r'^[\w.@+-]+$',
+    #     max_length=150,
+    #     required=True
+    # )
 
     class Meta:
         model = MyUser

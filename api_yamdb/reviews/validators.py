@@ -1,6 +1,7 @@
 
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+# from django.core.validators import RegexValidator
 
 
 def validate_year(value):
@@ -9,3 +10,6 @@ def validate_year(value):
         raise ValidationError(
             'Неверно указан год, не может быть меньше 1900 и больше текущего.'
         )
+
+
+# def validate_username(value):
