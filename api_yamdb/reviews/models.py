@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (MaxValueValidator,
+                                    RegexValidator,
+                                    MinValueValidator)
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -13,14 +15,22 @@ class MyUser(AbstractUser):
     username = models.CharField(
         max_length=150,
         unique=True,
-        verbose_name='Имя пользователя'
+        verbose_name='Имя пользователя',
+        validators=[RegexValidator(
+            regex=r'^[\w.@+-]+$',
+            message='Имя пользователя содержит недопустимый символ'
+        )]
     )
+
     bio = models.TextField(
         verbose_name='Биография пользователя',
         blank=True
     )
     email = models.EmailField(
+        max_length=254,
         unique=True,
+        blank=False,
+        null=False,
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
@@ -30,7 +40,7 @@ class MyUser(AbstractUser):
         verbose_name='Роль пользователя'
     )
     confirmation_code = models.CharField(
-        max_length=32,
+        max_length=300,
         blank=True,
         verbose_name='Код входа'
     )
@@ -58,7 +68,7 @@ class MyUser(AbstractUser):
 
     @property
     def is_admin(self):
-        if self.role == 'admin':
+        if self.role == 'admin' or self.is_superuser:
             return True
         else:
             return False
