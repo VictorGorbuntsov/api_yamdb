@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
 from reviews.models import Category, Genre, Title, Comment, Review, MyUser
 from reviews.validators import validate_year
@@ -48,7 +49,8 @@ class CommentSerializer(ModelSerializer):
 
 
 class MyUserSerializer(serializers.ModelSerializer):
-    """Сериализатор для Юзера."""
+    """Сериализатор для Юзера"""
+
     class Meta:
         model = MyUser
         fields = (
@@ -63,22 +65,28 @@ class MyUserSerializer(serializers.ModelSerializer):
 
 class SignUpSerializer(serializers.Serializer):
     """Сериализатор отправки письма."""
+
     email = serializers.EmailField(max_length=254, required=True)
-    username = serializers.CharField(max_length=150, required=True)
+    username = serializers.RegexField(
+        regex=r'^[\w.@+-]+$',
+        max_length=150,
+        required=True
+    )
 
     def validate(self, data):
+        """Имя me использовать запрещено"""
         if data['username'].lower() == 'me':
             raise ValidationError('Нельзя использовать слово "me" в имени')
-        return data
-
-    class Meta:
-        model = MyUser
-        fields = ('username', 'email',)
+        return (data)
 
 
 class TokenSerializer(serializers.Serializer):
-    """Cериализатор получения токена."""
-    username = serializers.CharField(max_length=150, required=True)
+    """Cериализатор получения токена"""
+    username = serializers.RegexField(
+        regex=r'^[\w.@+-]+$',
+        max_length=150,
+        required=True
+    )
     confirmation_code = serializers.CharField(required=True)
 
     class Meta:
@@ -87,7 +95,13 @@ class TokenSerializer(serializers.Serializer):
 
 
 class MeSerializer(serializers.ModelSerializer):
-    """Сериализатор для эндпоинта users/me."""
+    """Сериализатор для эндпоинта users/me"""
+    username = serializers.RegexField(
+        regex=r'^[\w.@+-]+$',
+        max_length=150,
+        required=True
+    )
+
     role = serializers.CharField(read_only=True)
 
     class Meta:
