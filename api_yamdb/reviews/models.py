@@ -1,5 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.validators import (MaxValueValidator,
+                                    RegexValidator,
+                                    MinValueValidator)
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -9,11 +12,16 @@ USER_ROLES = (
 
 
 class MyUser(AbstractUser):
-    # username = models.CharField(
-    #     max_length=154,
-    #     unique=True,
-    #     verbose_name='Имя пользователя'
-    # )
+    username = models.CharField(
+        max_length=150,
+        unique=True,
+        verbose_name='Имя пользователя',
+        validators=[RegexValidator(
+            regex=r'^[\w.@+-]+$',
+            message='Имя пользователя содержит недопустимый символ'
+        )]
+    )
+
     bio = models.TextField(
         verbose_name='Биография пользователя',
         blank=True
@@ -21,6 +29,8 @@ class MyUser(AbstractUser):
     email = models.EmailField(
         max_length=254,
         unique=True,
+        blank=False,
+        null=False,
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
@@ -30,7 +40,7 @@ class MyUser(AbstractUser):
         verbose_name='Роль пользователя'
     )
     confirmation_code = models.CharField(
-        max_length=32,
+        max_length=300,
         blank=True,
         verbose_name='Код входа'
     )
@@ -58,7 +68,7 @@ class MyUser(AbstractUser):
 
     @property
     def is_admin(self):
-        if self.role == 'admin':
+        if self.role == 'admin' or self.is_superuser:
             return True
         else:
             return False
@@ -76,33 +86,6 @@ class Category(models.Model):
         return self.slug
 
 
-class Title(models.Model):
-    text = models.TextField()
-    pub_date = models.DateTimeField(
-        'Дата публикации',
-        auto_now_add=True
-    )
-    author = models.ForeignKey(
-        'Автор',
-        MyUser,
-        on_delete=models.CASCADE,
-        related_name='posts'
-    )
-    group = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        related_name='posts',
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        ordering = ('pub_date',)
-
-    def __str__(self):
-        return self.text
-
-
 class Genre(models.Model):
     name = models.CharField(
         'Жанр',
@@ -113,3 +96,93 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.slug
+
+
+class Title(models.Model):
+    """Наименование и атрибуты произведений."""
+
+    name = models.CharField(max_length=150, unique=True)
+    year = models.IntegerField('Дата выпуска')
+    rating = models.FloatField(null=True)
+    description = models.TextField(max_length=300, blank=True)
+    genre = models.ManyToManyField(
+        Genre,
+        through='GenreTitle',
+        related_name='titles'
+    )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        related_name='titles',
+        null=True
+    )
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
+class GenreTitle(models.Model):
+    """Связывающая модель для ManyToMany."""
+    title = models.ForeignKey(Title, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+
+
+class TextAuthorDateBaseModel(models.Model):
+    text = models.TextField(
+        verbose_name='Текст'
+    )
+    author = models.ForeignKey(
+        MyUser,
+        on_delete=models.CASCADE,
+        related_name='%(class)ss',
+        verbose_name='Автор'
+    )
+    pub_date = models.DateTimeField(
+        verbose_name='Дата публикации',
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ('-pub_date',)
+        abstract = True
+
+    def str(self):
+        return (
+            f'{self.author} - {self.pub_date} - {self.text[:100]}'
+        )
+
+
+class Review(TextAuthorDateBaseModel):
+    title = models.ForeignKey(
+        Title,
+        on_delete=models.CASCADE,
+        related_name='reviews',
+        verbose_name='Произведение'
+    )
+    score = models.IntegerField(
+        verbose_name='Оценка произведения',
+        validators=(MinValueValidator(1), MaxValueValidator(10))
+    )
+
+    class Meta(TextAuthorDateBaseModel.Meta):
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('title', 'author'),
+                name='unique_title_author'
+            )
+        ]
+
+
+class Comment(TextAuthorDateBaseModel):
+    review = models.ForeignKey(
+        Review,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='Отзыв'
+    )
+
+    class Meta(TextAuthorDateBaseModel.Meta):
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

@@ -1,0 +1,2022 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.1rc1, pytest-6.2.4, py-1.11.0, pluggy-0.13.1 -- /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/bin/python3
+django: settings: api_yamdb.settings (from ini)
+rootdir: /Users/boris/Desktop/Dev2 /Dev11/api_yamdb, configfile: pytest.ini, testpaths: tests/
+plugins: pythonpath-0.7.3, django-4.4.0
+collecting ... collected 77 items
+
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_nodata_signup PASSED [  1%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_invalid_data_signup PASSED [  2%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_singup_length_and_simbols_validation[data0-messege0] PASSED [  3%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_singup_length_and_simbols_validation[data1-messege1] PASSED [  5%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_singup_length_and_simbols_validation[data2-messege2] FAILED [  6%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_user_signup PASSED [  7%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_admin_create_user PASSED [  9%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data0-messege0] PASSED [ 10%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data1-messege1] PASSED [ 11%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data2-messege2] FAILED [ 12%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data3-messege3] PASSED [ 14%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data4-messege4] PASSED [ 15%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_obtain_jwt_token_invalid_data PASSED [ 16%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_me_username_restricted PASSED [ 18%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_same_email_restricted FAILED [ 19%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_get_new_confirmation_code_for_existing_user PASSED [ 20%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_get_confirmation_code_for_user_created_by_admin PASSED [ 22%]
+tests/test_01_users.py::Test01UserAPI::test_01_users_not_authenticated PASSED [ 23%]
+tests/test_01_users.py::Test01UserAPI::test_02_users_username_not_authenticated PASSED [ 24%]
+tests/test_01_users.py::Test01UserAPI::test_03_users_me_not_authenticated PASSED [ 25%]
+tests/test_01_users.py::Test01UserAPI::test_04_users_get_admin PASSED    [ 27%]
+tests/test_01_users.py::Test01UserAPI::test_04_02_users_get_search FAILED [ 28%]
+tests/test_01_users.py::Test01UserAPI::test_04_01_users_get_admin_only PASSED [ 29%]
+tests/test_01_users.py::Test01UserAPI::test_05_01_users_post_admin_bad_requests PASSED [ 31%]
+tests/test_01_users.py::Test01UserAPI::test_05_02_users_post_admin_user_creation[data0-] PASSED [ 32%]
+tests/test_01_users.py::Test01UserAPI::test_05_02_users_post_admin_user_creation[data1-без указания роли нового пользователя ] PASSED [ 33%]
+tests/test_01_users.py::Test01UserAPI::test_05_03_users_post_response_has_data PASSED [ 35%]
+tests/test_01_users.py::Test01UserAPI::test_05_04_users_post_user_superuser FAILED [ 36%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_admin PASSED [ 37%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_not_admin PASSED [ 38%]
+tests/test_01_users.py::Test01UserAPI::test_07_01_users_username_patch_admin PASSED [ 40%]
+tests/test_01_users.py::Test01UserAPI::test_07_02_users_username_patch_moderator PASSED [ 41%]
+tests/test_01_users.py::Test01UserAPI::test_07_03_users_username_patch_user PASSED [ 42%]
+tests/test_01_users.py::Test01UserAPI::test_07_05_users_username_put_not_allowed FAILED [ 44%]
+tests/test_01_users.py::Test01UserAPI::test_08_01_users_username_delete_admin PASSED [ 45%]
+tests/test_01_users.py::Test01UserAPI::test_08_02_users_username_delete_moderator PASSED [ 46%]
+tests/test_01_users.py::Test01UserAPI::test_08_03_users_username_delete_user PASSED [ 48%]
+tests/test_01_users.py::Test01UserAPI::test_08_04_users_username_delete_superuser FAILED [ 49%]
+tests/test_01_users.py::Test01UserAPI::test_09_users_me_get FAILED       [ 50%]
+tests/test_01_users.py::Test01UserAPI::test_09_02_users_me_delete_not_allowed FAILED [ 51%]
+tests/test_01_users.py::Test01UserAPI::test_10_01_users_me_patch FAILED  [ 53%]
+tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data0-messege0] FAILED [ 54%]
+tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data1-messege1] FAILED [ 55%]
+tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data2-messege2] FAILED [ 57%]
+tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data3-messege3] FAILED [ 58%]
+tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data4-messege4] FAILED [ 59%]
+tests/test_01_users.py::Test01UserAPI::test_10_03_users_me_patch_change_role_not_allowed FAILED [ 61%]
+tests/test_02_category.py::Test02CategoryAPI::test_01_category_not_auth PASSED [ 62%]
+tests/test_02_category.py::Test02CategoryAPI::test_02_category_with_admin_user PASSED [ 63%]
+tests/test_02_category.py::Test02CategoryAPI::test_03_category_fields_validation[data0-massage0] PASSED [ 64%]
+tests/test_02_category.py::Test02CategoryAPI::test_03_category_fields_validation[data1-massage1] PASSED [ 66%]
+tests/test_02_category.py::Test02CategoryAPI::test_03_category_fields_validation[data2-massage2] PASSED [ 67%]
+tests/test_02_category.py::Test02CategoryAPI::test_04_category_delete_admin PASSED [ 68%]
+tests/test_02_category.py::Test02CategoryAPI::test_05_category_check_permission_admin PASSED [ 70%]
+tests/test_03_genre.py::Test03GenreAPI::test_01_genre_not_auth PASSED    [ 71%]
+tests/test_03_genre.py::Test03GenreAPI::test_02_genre PASSED             [ 72%]
+tests/test_03_genre.py::Test03GenreAPI::test_03_category_fields_validation[data0-massage0] PASSED [ 74%]
+tests/test_03_genre.py::Test03GenreAPI::test_03_category_fields_validation[data1-massage1] PASSED [ 75%]
+tests/test_03_genre.py::Test03GenreAPI::test_03_category_fields_validation[data2-massage2] PASSED [ 76%]
+tests/test_03_genre.py::Test03GenreAPI::test_04_genres_delete PASSED     [ 77%]
+tests/test_03_genre.py::Test03GenreAPI::test_05_genres_check_permission PASSED [ 79%]
+tests/test_04_title.py::Test04TitleAPI::test_01_title_not_auth PASSED    [ 80%]
+tests/test_04_title.py::Test04TitleAPI::test_02_title_admin PASSED       [ 81%]
+tests/test_04_title.py::Test04TitleAPI::test_03_titles_detail PASSED     [ 83%]
+tests/test_04_title.py::Test04TitleAPI::test_04_titles_name_length_validation PASSED [ 84%]
+tests/test_04_title.py::Test04TitleAPI::test_05_titles_check_permission PASSED [ 85%]
+tests/test_05_review.py::Test05ReviewAPI::test_01_review_not_auth FAILED [ 87%]
+tests/test_05_review.py::Test05ReviewAPI::test_02_review_post FAILED     [ 88%]
+tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail_get FAILED [ 89%]
+tests/test_05_review.py::Test05ReviewAPI::test_04_review_detail_user FAILED [ 90%]
+tests/test_05_review.py::Test05ReviewAPI::test_05_reviews_detail_moderator_and_admin FAILED [ 92%]
+tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth FAILED [ 93%]
+tests/test_06_comment.py::Test06CommentAPI::test_02_comment FAILED       [ 94%]
+tests/test_06_comment.py::Test06CommentAPI::test_03_comment_detail_get FAILED [ 96%]
+tests/test_06_comment.py::Test06CommentAPI::test_04_comment_detail__user_patch_delete FAILED [ 97%]
+tests/test_06_comment.py::Test06CommentAPI::test_05_comment_detail_admin_and_moderator FAILED [ 98%]
+tests/test_06_comment.py::Test06CommentAPI::test_06_comment_detail_not_auth FAILED [100%]
+
+=================================== FAILURES ===================================
+_ Test00UserRegistration.test_00_singup_length_and_simbols_validation[data2-messege2] _
+
+self = <tests.test_00_user_registration.Test00UserRegistration object at 0x7f9529161c10>
+client = <django.test.client.Client object at 0x7f95291614f0>
+data = {'email': 'valid-email@yamdb.fake', 'username': '|-|aTa|_|_|a'}
+messege = ('Проверьте, что при обработке {request_method}-запроса к `{url}` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\\w.@+-]+\\z',)
+django_user_model = <class 'reviews.models.MyUser'>
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_username_and_email_fields
+    )
+    def test_00_singup_length_and_simbols_validation(self, client,
+                                                     data, messege,
+                                                     django_user_model):
+        request_method = 'POST'
+        users_count = django_user_model.objects.count()
+        response = client.post(self.url_signup, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(
+                url=self.url_signup, request_method=request_method
+            )
+        )
+E       AssertionError: Проверьте, что при обработке POST-запроса к `/api/v1/auth/signup/` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\w.@+-]+\z
+E       assert 200 == <HTTPStatus.BAD_REQUEST: 400>
+E         +200
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_00_user_registration.py:94: AssertionError
+_ Test00UserRegistration.test_00_admin_create_user_length_and_simbols_validation[data2-messege2] _
+
+self = <tests.test_00_user_registration.Test00UserRegistration object at 0x7f94f803bbb0>
+admin_client = <rest_framework.test.APIClient object at 0x7f94f801e9d0>
+data = {'email': 'valid-email@yamdb.fake', 'username': '|-|aTa|_|_|a'}
+messege = ('Проверьте, что при обработке {request_method}-запроса к `{url}` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\\w.@+-]+\\z',)
+django_user_model = <class 'reviews.models.MyUser'>
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_00_admin_create_user_length_and_simbols_validation(
+            self, admin_client, data, messege, django_user_model
+    ):
+        request_method = 'POST'
+        users_count = django_user_model.objects.count()
+        response = admin_client.post(self.url_admin_create_user, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(
+                url=self.url_admin_create_user, request_method=request_method
+            )
+        )
+E       AssertionError: Проверьте, что при обработке POST-запроса к `/api/v1/users/` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\w.@+-]+\z
+E       assert 201 == <HTTPStatus.BAD_REQUEST: 400>
+E         +201
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_00_user_registration.py:209: AssertionError
+______ Test00UserRegistration.test_00_registration_same_email_restricted _______
+
+self = <QuerySet [<MyUser: valid_username_1>]>, defaults = None
+kwargs = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+params = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+
+    def get_or_create(self, defaults=None, **kwargs):
+        """
+        Look up an object with the given kwargs, creating one if necessary.
+        Return a tuple of (object, created), where created is a boolean
+        specifying whether an object was created.
+        """
+        # The get() needs to be targeted at the write database in order
+        # to avoid potential transaction consistency problems.
+        self._for_write = True
+        try:
+>           return self.get(**kwargs), False
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py:581: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <QuerySet [<MyUser: valid_username_1>]>, args = ()
+kwargs = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+clone = <QuerySet []>, limit = 21, num = 0
+
+    def get(self, *args, **kwargs):
+        """
+        Perform the query and return a single object matching the given
+        keyword arguments.
+        """
+        if self.query.combinator and (args or kwargs):
+            raise NotSupportedError(
+                'Calling QuerySet.get(...) with filters after %s() is not '
+                'supported.' % self.query.combinator
+            )
+        clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+        if self.query.can_filter() and not self.query.distinct_fields:
+            clone = clone.order_by()
+        limit = None
+        if not clone.query.select_for_update or connections[clone.db].features.supports_select_for_update_with_limit:
+            limit = MAX_GET_RESULTS
+            clone.query.set_limits(high=limit)
+        num = len(clone)
+        if num == 1:
+            return clone._result_cache[0]
+        if not num:
+>           raise self.model.DoesNotExist(
+                "%s matching query does not exist." %
+                self.model._meta.object_name
+            )
+E           reviews.models.MyUser.DoesNotExist: MyUser matching query does not exist.
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py:435: DoesNotExist
+
+During handling of the above exception, another exception occurred:
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>
+sql = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..., "username", "bio", "email", "role", "confirmation_code") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+params = ['', None, False, '', '', False, ...]
+ignored_wrapper_args = (False, {'connection': <django.db.backends.sqlite3.base.DatabaseWrapper object at 0x7f95288d01c0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.sqlite3.base.SQLiteCursorWrapper object at 0x7f9508060c10>
+query = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..."date_joined", "username", "bio", "email", "role", "confirmation_code") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+params = ['', None, False, '', '', False, ...]
+
+    def execute(self, query, params=None):
+        if params is None:
+            return Database.Cursor.execute(self, query)
+        query = self.convert_query(query)
+>       return Database.Cursor.execute(self, query, params)
+E       sqlite3.IntegrityError: UNIQUE constraint failed: reviews_myuser.email
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py:423: IntegrityError
+
+The above exception was the direct cause of the following exception:
+
+self = <tests.test_00_user_registration.Test00UserRegistration object at 0x7f95193fae80>
+client = <django.test.client.Client object at 0x7f9508055d60>
+
+    def test_00_registration_same_email_restricted(self, client):
+        valid_email_1 = 'test_duplicate_1@yamdb.fake'
+        valid_email_2 = 'test_duplicate_2@yamdb.fake'
+        valid_username_1 = 'valid_username_1'
+        valid_username_2 = 'valid_username_2'
+    
+        valid_data = {
+            'email': valid_email_1,
+            'username': valid_username_1
+        }
+        response = client.post(self.url_signup, data=valid_data)
+        assert response.status_code == HTTPStatus.OK, (
+            f'Проверьте, что POST-запрос к `{self.url_signup}` с корректными '
+            'возвращает статус-код 200.'
+        )
+    
+        duplicate_email_data = {
+            'email': valid_email_1,
+            'username': valid_username_2
+        }
+        assert_msg = (
+            f'Если POST-запрос, отправленный на эндпоинт `{self.url_signup}`, '
+            'содержит `email` зарегистрированного пользователя и незанятый '
+            '`username` - должен вернуться ответ со статусом 400.'
+        )
+        try:
+>           response = client.post(self.url_signup, data=duplicate_email_data)
+
+tests/test_00_user_registration.py:313: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.Client object at 0x7f9508055d60>
+path = '/api/v1/auth/signup/'
+data = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+content_type = 'multipart/form-data; boundary=BoUnDaRyStRiNg', follow = False
+secure = False, extra = {}
+
+    def post(self, path, data=None, content_type=MULTIPART_CONTENT,
+             follow=False, secure=False, **extra):
+        """Request a response from the server using POST."""
+        self.extra = extra
+>       response = super().post(path, data=data, content_type=content_type, secure=secure, **extra)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/test/client.py:751: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.Client object at 0x7f9508055d60>
+path = '/api/v1/auth/signup/'
+data = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+content_type = 'multipart/form-data; boundary=BoUnDaRyStRiNg', secure = False
+extra = {}
+post_data = b'--BoUnDaRyStRiNg\r\nContent-Disposition: form-data; name="email"\r\n\r\ntest_duplicate_1@yamdb.fake\r\n--BoUnDaRyStRiNg\r\nContent-Disposition: form-data; name="username"\r\n\r\nvalid_username_2\r\n--BoUnDaRyStRiNg--\r\n'
+
+    def post(self, path, data=None, content_type=MULTIPART_CONTENT,
+             secure=False, **extra):
+        """Construct a POST request."""
+        data = self._encode_json({} if data is None else data, content_type)
+        post_data = self._encode_data(data, content_type)
+    
+>       return self.generic('POST', path, post_data, content_type,
+                            secure=secure, **extra)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/test/client.py:407: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.Client object at 0x7f9508055d60>, method = 'POST'
+path = '/api/v1/auth/signup/'
+data = b'--BoUnDaRyStRiNg\r\nContent-Disposition: form-data; name="email"\r\n\r\ntest_duplicate_1@yamdb.fake\r\n--BoUnDaRyStRiNg\r\nContent-Disposition: form-data; name="username"\r\n\r\nvalid_username_2\r\n--BoUnDaRyStRiNg--\r\n'
+content_type = 'multipart/form-data; boundary=BoUnDaRyStRiNg', secure = False
+extra = {}
+parsed = ParseResult(scheme='', netloc='', path='/api/v1/auth/signup/', params='', query='', fragment='')
+r = {'CONTENT_LENGTH': '202', 'CONTENT_TYPE': 'multipart/form-data; boundary=BoUnDaRyStRiNg', 'PATH_INFO': '/api/v1/auth/signup/', 'QUERY_STRING': '', ...}
+query_string = ''
+
+    def generic(self, method, path, data='',
+                content_type='application/octet-stream', secure=False,
+                **extra):
+        """Construct an arbitrary HTTP request."""
+        parsed = urlparse(str(path))  # path can be lazy
+        data = force_bytes(data, settings.DEFAULT_CHARSET)
+        r = {
+            'PATH_INFO': self._get_path(parsed),
+            'REQUEST_METHOD': method,
+            'SERVER_PORT': '443' if secure else '80',
+            'wsgi.url_scheme': 'https' if secure else 'http',
+        }
+        if data:
+            r.update({
+                'CONTENT_LENGTH': str(len(data)),
+                'CONTENT_TYPE': content_type,
+                'wsgi.input': FakePayload(data),
+            })
+        r.update(extra)
+        # If QUERY_STRING is absent or empty, we want to extract it from the URL.
+        if not r.get('QUERY_STRING'):
+            # WSGI requires latin-1 encoded strings. See get_path_info().
+            query_string = parsed[4].encode().decode('iso-8859-1')
+            r['QUERY_STRING'] = query_string
+>       return self.request(**r)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/test/client.py:473: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.Client object at 0x7f9508055d60>
+request = {'CONTENT_LENGTH': '202', 'CONTENT_TYPE': 'multipart/form-data; boundary=BoUnDaRyStRiNg', 'PATH_INFO': '/api/v1/auth/signup/', 'QUERY_STRING': '', ...}
+environ = {'CONTENT_LENGTH': '202', 'CONTENT_TYPE': 'multipart/form-data; boundary=BoUnDaRyStRiNg', 'HTTP_COOKIE': '', 'PATH_INFO': '/api/v1/auth/signup/', ...}
+data = {'context': [[{'True': True, 'False': False, 'None': None}, {'is_email': True, 'unicode_hint': '', 'frames': [{'exc_ca...elf, query):'], 'pre_context_lineno': 416}}]], 'templates': [<django.template.base.Template object at 0x7f95080c03a0>]}
+on_template_render = functools.partial(<function store_rendered_templates at 0x7f95285e19d0>, {'templates': [<django.template.base.Template...rsor.executemany(self, query, param_list)', '', '    def convert_query(self, query):'], 'pre_context_lineno': 416}}]]})
+signal_uid = 'template-render-140278061472128'
+exception_uid = 'request-exception-140278061472128'
+response = <HttpResponseServerError status_code=500, "text/html">
+
+    def request(self, **request):
+        """
+        The master request method. Compose the environment dictionary and pass
+        to the handler, return the result of the handler. Assume defaults for
+        the query environment, which can be overridden using the arguments to
+        the request.
+        """
+        environ = self._base_environ(**request)
+    
+        # Curry a data dictionary into an instance of the template renderer
+        # callback function.
+        data = {}
+        on_template_render = partial(store_rendered_templates, data)
+        signal_uid = "template-render-%s" % id(request)
+        signals.template_rendered.connect(on_template_render, dispatch_uid=signal_uid)
+        # Capture exceptions created by the handler.
+        exception_uid = "request-exception-%s" % id(request)
+        got_request_exception.connect(self.store_exc_info, dispatch_uid=exception_uid)
+        try:
+            response = self.handler(environ)
+        finally:
+            signals.template_rendered.disconnect(dispatch_uid=signal_uid)
+            got_request_exception.disconnect(dispatch_uid=exception_uid)
+        # Check for signaled exceptions.
+>       self.check_exception(response)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/test/client.py:719: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.Client object at 0x7f9508055d60>
+response = <HttpResponseServerError status_code=500, "text/html">
+
+    def check_exception(self, response):
+        """
+        Look for a signaled exception, clear the current context exception
+        data, re-raise the signaled exception, and clear the signaled exception
+        from the local cache.
+        """
+        response.exc_info = self.exc_info
+        if self.exc_info:
+            _, exc_value, _ = self.exc_info
+            self.exc_info = None
+            if self.raise_request_exception:
+>               raise exc_value
+
+api_yamdb/venv/lib/python3.9/site-packages/django/test/client.py:580: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+request = <WSGIRequest: POST '/api/v1/auth/signup/'>
+
+    @wraps(get_response)
+    def inner(request):
+        try:
+>           response = get_response(request)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/core/handlers/exception.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.test.client.ClientHandler object at 0x7f9508055df0>
+request = <WSGIRequest: POST '/api/v1/auth/signup/'>
+
+    def _get_response(self, request):
+        """
+        Resolve and call the view, then apply view, exception, and
+        template_response middleware. This method is everything that happens
+        inside the request/response middleware.
+        """
+        response = None
+        callback, callback_args, callback_kwargs = self.resolve_request(request)
+    
+        # Apply view middleware
+        for middleware_method in self._view_middleware:
+            response = middleware_method(request, callback, callback_args, callback_kwargs)
+            if response:
+                break
+    
+        if response is None:
+            wrapped_callback = self.make_view_atomic(callback)
+            # If it is an asynchronous view, run it in a subthread.
+            if asyncio.iscoroutinefunction(wrapped_callback):
+                wrapped_callback = async_to_sync(wrapped_callback)
+            try:
+>               response = wrapped_callback(request, *callback_args, **callback_kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/core/handlers/base.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<WSGIRequest: POST '/api/v1/auth/signup/'>,), kwargs = {}
+
+    def wrapped_view(*args, **kwargs):
+>       return view_func(*args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+request = <WSGIRequest: POST '/api/v1/auth/signup/'>, args = (), kwargs = {}
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+
+    def view(request, *args, **kwargs):
+        self = cls(**initkwargs)
+        self.setup(request, *args, **kwargs)
+        if not hasattr(self, 'request'):
+            raise AttributeError(
+                "%s instance has no 'request' attribute. Did you override "
+                "setup() and forget to call super()?" % cls.__name__
+            )
+>       return self.dispatch(request, *args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/views/generic/base.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+request = <rest_framework.request.Request: POST '/api/v1/auth/signup/'>
+args = (), kwargs = {}
+handler = <bound method api_view.<locals>.decorator.<locals>.handler of <api.views.WrappedAPIView object at 0x7f95080909a0>>
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        `.dispatch()` is pretty much the same as Django's regular dispatch,
+        but with extra hooks for startup, finalize, and exception handling.
+        """
+        self.args = args
+        self.kwargs = kwargs
+        request = self.initialize_request(request, *args, **kwargs)
+        self.request = request
+        self.headers = self.default_response_headers  # deprecate?
+    
+        try:
+            self.initial(request, *args, **kwargs)
+    
+            # Get the appropriate handler method
+            if request.method.lower() in self.http_method_names:
+                handler = getattr(self, request.method.lower(),
+                                  self.http_method_not_allowed)
+            else:
+                handler = self.http_method_not_allowed
+    
+            response = handler(request, *args, **kwargs)
+    
+        except Exception as exc:
+>           response = self.handle_exception(exc)
+
+api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py:509: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+exc = IntegrityError('UNIQUE constraint failed: reviews_myuser.email')
+
+    def handle_exception(self, exc):
+        """
+        Handle any exception that occurs, by returning an appropriate response,
+        or re-raising the error.
+        """
+        if isinstance(exc, (exceptions.NotAuthenticated,
+                            exceptions.AuthenticationFailed)):
+            # WWW-Authenticate header for 401 responses, else coerce to 403
+            auth_header = self.get_authenticate_header(self.request)
+    
+            if auth_header:
+                exc.auth_header = auth_header
+            else:
+                exc.status_code = status.HTTP_403_FORBIDDEN
+    
+        exception_handler = self.get_exception_handler()
+    
+        context = self.get_exception_handler_context()
+        response = exception_handler(exc, context)
+    
+        if response is None:
+>           self.raise_uncaught_exception(exc)
+
+api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py:469: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+exc = IntegrityError('UNIQUE constraint failed: reviews_myuser.email')
+
+    def raise_uncaught_exception(self, exc):
+        if settings.DEBUG:
+            request = self.request
+            renderer_format = getattr(request.accepted_renderer, 'format')
+            use_plaintext_traceback = renderer_format not in ('html', 'api', 'admin')
+            request.force_plaintext_errors(use_plaintext_traceback)
+>       raise exc
+
+api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py:480: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+request = <rest_framework.request.Request: POST '/api/v1/auth/signup/'>
+args = (), kwargs = {}
+handler = <bound method api_view.<locals>.decorator.<locals>.handler of <api.views.WrappedAPIView object at 0x7f95080909a0>>
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        `.dispatch()` is pretty much the same as Django's regular dispatch,
+        but with extra hooks for startup, finalize, and exception handling.
+        """
+        self.args = args
+        self.kwargs = kwargs
+        request = self.initialize_request(request, *args, **kwargs)
+        self.request = request
+        self.headers = self.default_response_headers  # deprecate?
+    
+        try:
+            self.initial(request, *args, **kwargs)
+    
+            # Get the appropriate handler method
+            if request.method.lower() in self.http_method_names:
+                handler = getattr(self, request.method.lower(),
+                                  self.http_method_not_allowed)
+            else:
+                handler = self.http_method_not_allowed
+    
+>           response = handler(request, *args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <api.views.WrappedAPIView object at 0x7f95080909a0>
+args = (<rest_framework.request.Request: POST '/api/v1/auth/signup/'>,)
+kwargs = {}
+
+    def handler(self, *args, **kwargs):
+>       return func(*args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/rest_framework/decorators.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+request = <rest_framework.request.Request: POST '/api/v1/auth/signup/'>
+
+    @api_view(['POST'])
+    @permission_classes([AllowAny])
+    def sign_up(request):
+        """Функция для запроса кода доступа"""
+    
+        serializer = SignUpSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data['email']
+        username = serializer.validated_data['username']
+>       user, create = MyUser.objects.get_or_create(
+            username=username,
+            email=email
+        )
+
+api_yamdb/api/views.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.contrib.auth.models.UserManager object at 0x7f9528a3d130>
+args = ()
+kwargs = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+
+    def manager_method(self, *args, **kwargs):
+>       return getattr(self.get_queryset(), name)(*args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/manager.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <QuerySet [<MyUser: valid_username_1>]>, defaults = None
+kwargs = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+params = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+
+    def get_or_create(self, defaults=None, **kwargs):
+        """
+        Look up an object with the given kwargs, creating one if necessary.
+        Return a tuple of (object, created), where created is a boolean
+        specifying whether an object was created.
+        """
+        # The get() needs to be targeted at the write database in order
+        # to avoid potential transaction consistency problems.
+        self._for_write = True
+        try:
+            return self.get(**kwargs), False
+        except self.model.DoesNotExist:
+            params = self._extract_model_params(defaults, **kwargs)
+            # Try to create an object using passed params.
+            try:
+                with transaction.atomic(using=self.db):
+                    params = dict(resolve_callables(params))
+>                   return self.create(**params), True
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py:588: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <QuerySet [<MyUser: valid_username_1>]>
+kwargs = {'email': 'test_duplicate_1@yamdb.fake', 'username': 'valid_username_2'}
+obj = <MyUser: valid_username_2>
+
+    def create(self, **kwargs):
+        """
+        Create a new object with the given kwargs, saving it to the database
+        and returning the created object.
+        """
+        obj = self.model(**kwargs)
+        self._for_write = True
+>       obj.save(force_insert=True, using=self.db)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py:453: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MyUser: valid_username_2>, args = ()
+kwargs = {'force_insert': True, 'using': 'default'}
+
+    def save(self, *args, **kwargs):
+>       super().save(*args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/contrib/auth/base_user.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MyUser: valid_username_2>, force_insert = True, force_update = False
+using = 'default', update_fields = None
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        """
+        Save the current instance. Override this in a subclass if you want to
+        control the saving process.
+    
+        The 'force_insert' and 'force_update' parameters can be used to insist
+        that the "save" must be an SQL insert or update (or equivalent for
+        non-SQL backends), respectively. Normally, they should not be set.
+        """
+        self._prepare_related_fields_for_save(operation_name='save')
+    
+        using = using or router.db_for_write(self.__class__, instance=self)
+        if force_insert and (force_update or update_fields):
+            raise ValueError("Cannot force both insert and updating in model saving.")
+    
+        deferred_fields = self.get_deferred_fields()
+        if update_fields is not None:
+            # If update_fields is empty, skip the save. We do also check for
+            # no-op saves later on for inheritance cases. This bailout is
+            # still needed for skipping signal sending.
+            if not update_fields:
+                return
+    
+            update_fields = frozenset(update_fields)
+            field_names = set()
+    
+            for field in self._meta.concrete_fields:
+                if not field.primary_key:
+                    field_names.add(field.name)
+    
+                    if field.name != field.attname:
+                        field_names.add(field.attname)
+    
+            non_model_fields = update_fields.difference(field_names)
+    
+            if non_model_fields:
+                raise ValueError(
+                    'The following fields do not exist in this model, are m2m '
+                    'fields, or are non-concrete fields: %s'
+                    % ', '.join(non_model_fields)
+                )
+    
+        # If saving to the same database, and this model is deferred, then
+        # automatically do an "update_fields" save on the loaded fields.
+        elif not force_insert and deferred_fields and using == self._state.db:
+            field_names = set()
+            for field in self._meta.concrete_fields:
+                if not field.primary_key and not hasattr(field, 'through'):
+                    field_names.add(field.attname)
+            loaded_fields = field_names.difference(deferred_fields)
+            if loaded_fields:
+                update_fields = frozenset(loaded_fields)
+    
+>       self.save_base(using=using, force_insert=force_insert,
+                       force_update=force_update, update_fields=update_fields)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:726: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MyUser: valid_username_2>, raw = False, force_insert = True
+force_update = False, using = 'default', update_fields = None
+
+    def save_base(self, raw=False, force_insert=False,
+                  force_update=False, using=None, update_fields=None):
+        """
+        Handle the parts of saving which should be done only once per save,
+        yet need to be done in raw saves, too. This includes some sanity
+        checks and signal sending.
+    
+        The 'raw' argument is telling save_base not to save any parent
+        models and not to do any changes to the values before save. This
+        is used by fixture loading.
+        """
+        using = using or router.db_for_write(self.__class__, instance=self)
+        assert not (force_insert and (force_update or update_fields))
+        assert update_fields is None or update_fields
+        cls = origin = self.__class__
+        # Skip proxies, but keep the origin as the proxy model.
+        if cls._meta.proxy:
+            cls = cls._meta.concrete_model
+        meta = cls._meta
+        if not meta.auto_created:
+            pre_save.send(
+                sender=origin, instance=self, raw=raw, using=using,
+                update_fields=update_fields,
+            )
+        # A transaction isn't needed if one query is issued.
+        if meta.parents:
+            context_manager = transaction.atomic(using=using, savepoint=False)
+        else:
+            context_manager = transaction.mark_for_rollback_on_error(using=using)
+        with context_manager:
+            parent_inserted = False
+            if not raw:
+                parent_inserted = self._save_parents(cls, using, update_fields)
+>           updated = self._save_table(
+                raw, cls, force_insert or parent_inserted,
+                force_update, using, update_fields,
+            )
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:763: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MyUser: valid_username_2>, raw = False
+cls = <class 'reviews.models.MyUser'>, force_insert = True, force_update = False
+using = 'default', update_fields = None
+
+    def _save_table(self, raw=False, cls=None, force_insert=False,
+                    force_update=False, using=None, update_fields=None):
+        """
+        Do the heavy-lifting involved in saving. Update or insert the data
+        for a single table.
+        """
+        meta = cls._meta
+        non_pks = [f for f in meta.local_concrete_fields if not f.primary_key]
+    
+        if update_fields:
+            non_pks = [f for f in non_pks
+                       if f.name in update_fields or f.attname in update_fields]
+    
+        pk_val = self._get_pk_val(meta)
+        if pk_val is None:
+            pk_val = meta.pk.get_pk_value_on_save(self)
+            setattr(self, meta.pk.attname, pk_val)
+        pk_set = pk_val is not None
+        if not pk_set and (force_update or update_fields):
+            raise ValueError("Cannot force an update in save() with no primary key.")
+        updated = False
+        # Skip an UPDATE when adding an instance and primary key has a default.
+        if (
+            not raw and
+            not force_insert and
+            self._state.adding and
+            meta.pk.default and
+            meta.pk.default is not NOT_PROVIDED
+        ):
+            force_insert = True
+        # If possible, try an UPDATE. If that doesn't update anything, do an INSERT.
+        if pk_set and not force_insert:
+            base_qs = cls._base_manager.using(using)
+            values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+                      for f in non_pks]
+            forced_update = update_fields or force_update
+            updated = self._do_update(base_qs, using, pk_val, values, update_fields,
+                                      forced_update)
+            if force_update and not updated:
+                raise DatabaseError("Forced update did not affect any rows.")
+            if update_fields and not updated:
+                raise DatabaseError("Save with update_fields did not affect any rows.")
+        if not updated:
+            if meta.order_with_respect_to:
+                # If this is a model with an order_with_respect_to
+                # autopopulate the _order field
+                field = meta.order_with_respect_to
+                filter_args = field.get_filter_kwargs_for_object(self)
+                self._order = cls._base_manager.using(using).filter(**filter_args).aggregate(
+                    _order__max=Coalesce(
+                        ExpressionWrapper(Max('_order') + Value(1), output_field=IntegerField()),
+                        Value(0),
+                    ),
+                )['_order__max']
+            fields = meta.local_concrete_fields
+            if not pk_set:
+                fields = [f for f in fields if f is not meta.auto_field]
+    
+            returning_fields = meta.db_returning_fields
+>           results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:868: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MyUser: valid_username_2>
+manager = <django.db.models.manager.Manager object at 0x7f9529095040>
+using = 'default'
+fields = [<django.db.models.fields.CharField: password>, <django.db.models.fields.DateTimeField: last_login>, <django.db.models...ld: first_name>, <django.db.models.fields.CharField: last_name>, <django.db.models.fields.BooleanField: is_staff>, ...]
+returning_fields = [<django.db.models.fields.BigAutoField: id>], raw = False
+
+    def _do_insert(self, manager, using, fields, returning_fields, raw):
+        """
+        Do an INSERT. If returning_fields is defined then this method should
+        return the newly created data for the model.
+        """
+>       return manager._insert(
+            [self], fields=fields, returning_fields=returning_fields,
+            using=using, raw=raw,
+        )
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:906: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.models.manager.Manager object at 0x7f9529095040>
+args = ([<MyUser: valid_username_2>],)
+kwargs = {'fields': [<django.db.models.fields.CharField: password>, <django.db.models.fields.DateTimeField: last_login>, <djang...d: is_staff>, ...], 'raw': False, 'returning_fields': [<django.db.models.fields.BigAutoField: id>], 'using': 'default'}
+
+    def manager_method(self, *args, **kwargs):
+>       return getattr(self.get_queryset(), name)(*args, **kwargs)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/manager.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <QuerySet [<MyUser: valid_username_1>]>
+objs = [<MyUser: valid_username_2>]
+fields = [<django.db.models.fields.CharField: password>, <django.db.models.fields.DateTimeField: last_login>, <django.db.models...ld: first_name>, <django.db.models.fields.CharField: last_name>, <django.db.models.fields.BooleanField: is_staff>, ...]
+returning_fields = [<django.db.models.fields.BigAutoField: id>], raw = False
+using = 'default', ignore_conflicts = False
+
+    def _insert(self, objs, fields, returning_fields=None, raw=False, using=None, ignore_conflicts=False):
+        """
+        Insert a new record for the given model. This provides an interface to
+        the InsertQuery class and is how Model.save() is implemented.
+        """
+        self._for_write = True
+        if using is None:
+            using = self.db
+        query = sql.InsertQuery(self.model, ignore_conflicts=ignore_conflicts)
+        query.insert_values(fields, objs, raw=raw)
+>       return query.get_compiler(using=using).execute_sql(returning_fields)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py:1270: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.models.sql.compiler.SQLInsertCompiler object at 0x7f950808d430>
+returning_fields = [<django.db.models.fields.BigAutoField: id>]
+
+    def execute_sql(self, returning_fields=None):
+        assert not (
+            returning_fields and len(self.query.objs) != 1 and
+            not self.connection.features.can_return_rows_from_bulk_insert
+        )
+        self.returning_fields = returning_fields
+        with self.connection.cursor() as cursor:
+            for sql, params in self.as_sql():
+>               cursor.execute(sql, params)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py:1410: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>
+sql = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..., "username", "bio", "email", "role", "confirmation_code") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+params = ['', None, False, '', '', False, ...]
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>
+sql = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..., "username", "bio", "email", "role", "confirmation_code") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+params = ['', None, False, '', '', False, ...], many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>
+sql = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..., "username", "bio", "email", "role", "confirmation_code") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+params = ['', None, False, '', '', False, ...]
+ignored_wrapper_args = (False, {'connection': <django.db.backends.sqlite3.base.DatabaseWrapper object at 0x7f95288d01c0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f9528f6f520>
+exc_type = <class 'sqlite3.IntegrityError'>
+exc_value = IntegrityError('UNIQUE constraint failed: reviews_myuser.email')
+traceback = <traceback object at 0x7f9508093540>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>
+sql = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..., "username", "bio", "email", "role", "confirmation_code") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+params = ['', None, False, '', '', False, ...]
+ignored_wrapper_args = (False, {'connection': <django.db.backends.sqlite3.base.DatabaseWrapper object at 0x7f95288d01c0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f950808d460>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.sqlite3.base.SQLiteCursorWrapper object at 0x7f9508060c10>
+query = 'INSERT INTO "reviews_myuser" ("password", "last_login", "is_superuser", "first_name", "last_name", "is_staff", "is_ac..."date_joined", "username", "bio", "email", "role", "confirmation_code") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+params = ['', None, False, '', '', False, ...]
+
+    def execute(self, query, params=None):
+        if params is None:
+            return Database.Cursor.execute(self, query)
+        query = self.convert_query(query)
+>       return Database.Cursor.execute(self, query, params)
+E       django.db.utils.IntegrityError: UNIQUE constraint failed: reviews_myuser.email
+
+api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py:423: IntegrityError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_00_user_registration.Test00UserRegistration object at 0x7f95193fae80>
+client = <django.test.client.Client object at 0x7f9508055d60>
+
+    def test_00_registration_same_email_restricted(self, client):
+        valid_email_1 = 'test_duplicate_1@yamdb.fake'
+        valid_email_2 = 'test_duplicate_2@yamdb.fake'
+        valid_username_1 = 'valid_username_1'
+        valid_username_2 = 'valid_username_2'
+    
+        valid_data = {
+            'email': valid_email_1,
+            'username': valid_username_1
+        }
+        response = client.post(self.url_signup, data=valid_data)
+        assert response.status_code == HTTPStatus.OK, (
+            f'Проверьте, что POST-запрос к `{self.url_signup}` с корректными '
+            'возвращает статус-код 200.'
+        )
+    
+        duplicate_email_data = {
+            'email': valid_email_1,
+            'username': valid_username_2
+        }
+        assert_msg = (
+            f'Если POST-запрос, отправленный на эндпоинт `{self.url_signup}`, '
+            'содержит `email` зарегистрированного пользователя и незанятый '
+            '`username` - должен вернуться ответ со статусом 400.'
+        )
+        try:
+            response = client.post(self.url_signup, data=duplicate_email_data)
+        except IntegrityError:
+>           raise AssertionError(assert_msg)
+E           AssertionError: Если POST-запрос, отправленный на эндпоинт `/api/v1/auth/signup/`, содержит `email` зарегистрированного пользователя и незанятый `username` - должен вернуться ответ со статусом 400.
+
+tests/test_00_user_registration.py:315: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    django.request:log.py:224 Internal Server Error: /api/v1/auth/signup/
+Traceback (most recent call last):
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py", line 581, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+reviews.models.MyUser.DoesNotExist: MyUser matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: reviews_myuser.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/api/views.py", line 97, in sign_up
+    user, create = MyUser.objects.get_or_create(
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py", line 588, in get_or_create
+    return self.create(**params), True
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/contrib/auth/base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py", line 763, in save_base
+    updated = self._save_table(
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py", line 868, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py", line 906, in _do_insert
+    return manager._insert(
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1410, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: reviews_myuser.email
+__________________ Test01UserAPI.test_04_02_users_get_search ___________________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f9528fe4fd0>
+user = <MyUser: TestUser>
+admin_client = <rest_framework.test.APIClient object at 0x7f9508048460>
+admin = <MyUser: TestAdmin>, django_user_model = <class 'reviews.models.MyUser'>
+
+    def test_04_02_users_get_search(self, user, admin_client,
+                                    admin, django_user_model):
+        url = '/api/v1/users/'
+        search_url = f'{url}?search={admin.username}'
+        response = admin_client.get(search_url)
+        assert response.status_code != HTTPStatus.NOT_FOUND, (
+            'Эндпоинт `/api/v1/users/?search={username}` не найден. '
+            'Проверьте настройки в *urls.py*.'
+        )
+        reponse_json = response.json()
+        assert ('results' in reponse_json
+                and isinstance(reponse_json.get('results'), list)), (
+            'Проверьте, что GET-запрос к `/api/v1/users/?search={username}` '
+            'возвращает результаты поиска по значению ключа `results` в виде '
+            'списка.'
+        )
+        users_count = (
+            django_user_model.objects.filter(username=admin.username).count()
+        )
+>       assert len(reponse_json['results']) == users_count, (
+            'Проверьте, что GET-запрос к `/api/v1/users/?search={username}` '
+            'возвращает данные только тех пользователей, `username` которых '
+            'удовлетворяет условию поиска.'
+        )
+E       AssertionError: Проверьте, что GET-запрос к `/api/v1/users/?search={username}` возвращает данные только тех пользователей, `username` которых удовлетворяет условию поиска.
+E       assert 2 == 1
+E         +2
+E         -1
+
+tests/test_01_users.py:114: AssertionError
+______________ Test01UserAPI.test_05_04_users_post_user_superuser ______________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f950807ea30>
+user_superuser_client = <rest_framework.test.APIClient object at 0x7f94f81ed2e0>
+django_user_model = <class 'reviews.models.MyUser'>
+
+    def test_05_04_users_post_user_superuser(self, user_superuser_client,
+                                             django_user_model):
+        valid_data = {
+            'username': 'TestUser_3',
+            'role': 'user',
+            'email': 'testuser3@yamdb.fake'
+        }
+        response = user_superuser_client.post(
+            '/api/v1/users/', data=valid_data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос суперпользователя к `/api/v1/users/` '
+            'содержит корректные данные - должен вернуться ответ со статусом '
+            '201.'
+        )
+E       AssertionError: Если POST-запрос суперпользователя к `/api/v1/users/` содержит корректные данные - должен вернуться ответ со статусом 201.
+E       assert 403 == <HTTPStatus.CREATED: 201>
+E         +403
+E         -<HTTPStatus.CREATED: 201>
+
+tests/test_01_users.py:261: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/
+___________ Test01UserAPI.test_07_05_users_username_put_not_allowed ____________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f9519402040>
+admin_client = <rest_framework.test.APIClient object at 0x7f94f81ed670>
+user = <MyUser: TestUser>
+
+    def test_07_05_users_username_put_not_allowed(self, admin_client, user):
+        response = admin_client.put(
+            f'/api/v1/users/{user.username}/', data=self.PATCH_DATA
+        )
+>       assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED, (
+            'Проверьте, что PUT-запрос к `/api/v1/users/{username}/` '
+            'не предусмотрен и возвращает статус 405.'
+        )
+E       AssertionError: Проверьте, что PUT-запрос к `/api/v1/users/{username}/` не предусмотрен и возвращает статус 405.
+E       assert 400 == <HTTPStatus.METHOD_NOT_ALLOWED: 405>
+E         +400
+E         -<HTTPStatus.METHOD_NOT_ALLOWED: 405>
+
+tests/test_01_users.py:405: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/users/TestUser/
+___________ Test01UserAPI.test_08_04_users_username_delete_superuser ___________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f952932bdc0>
+user_superuser_client = <rest_framework.test.APIClient object at 0x7f951975d0a0>
+user = <MyUser: TestUser>, django_user_model = <class 'reviews.models.MyUser'>
+
+    def test_08_04_users_username_delete_superuser(self, user_superuser_client,
+                                                   user, django_user_model):
+        users_cnt = django_user_model.objects.count()
+        response = user_superuser_client.delete(
+            f'/api/v1/users/{user.username}/'
+        )
+>       assert response.status_code == HTTPStatus.NO_CONTENT, (
+            'Проверьте, что DELETE-запрос суперпользователя к '
+            '`/api/v1/users/{username}/` возвращает ответ со статусом 204.'
+        )
+E       AssertionError: Проверьте, что DELETE-запрос суперпользователя к `/api/v1/users/{username}/` возвращает ответ со статусом 204.
+E       assert 403 == <HTTPStatus.NO_CONTENT: 204>
+E         +403
+E         -<HTTPStatus.NO_CONTENT: 204>
+
+tests/test_01_users.py:455: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/TestUser/
+______________________ Test01UserAPI.test_09_users_me_get ______________________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f952932b520>
+user_client = <rest_framework.test.APIClient object at 0x7f95290b3670>
+user = <MyUser: TestUser>
+
+    def test_09_users_me_get(self, user_client, user):
+        response = user_client.get('/api/v1/users/me/')
+>       assert response.status_code == HTTPStatus.OK, (
+            'Проверьте, что GET-запрос обычного пользователя к '
+            '`/api/v1/users/me/` возвращает ответ со статусом 200.'
+        )
+E       AssertionError: Проверьте, что GET-запрос обычного пользователя к `/api/v1/users/me/` возвращает ответ со статусом 200.
+E       assert 403 == <HTTPStatus.OK: 200>
+E         +403
+E         -<HTTPStatus.OK: 200>
+
+tests/test_01_users.py:466: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+_____________ Test01UserAPI.test_09_02_users_me_delete_not_allowed _____________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f952928f3d0>
+user_client = <rest_framework.test.APIClient object at 0x7f95290b3460>
+user = <MyUser: TestUser>, django_user_model = <class 'reviews.models.MyUser'>
+
+    def test_09_02_users_me_delete_not_allowed(self, user_client, user,
+                                               django_user_model):
+        response = user_client.delete('/api/v1/users/me/')
+>       assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED, (
+            'Проверьте, что DELETE-запрос к `/api/v1/users/me/` возвращает '
+            'ответ со статусом 405.'
+        )
+E       AssertionError: Проверьте, что DELETE-запрос к `/api/v1/users/me/` возвращает ответ со статусом 405.
+E       assert 403 == <HTTPStatus.METHOD_NOT_ALLOWED: 405>
+E         +403
+E         -<HTTPStatus.METHOD_NOT_ALLOWED: 405>
+
+tests/test_01_users.py:483: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+___________________ Test01UserAPI.test_10_01_users_me_patch ____________________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f95292886d0>
+django_user_model = <class 'reviews.models.MyUser'>
+admin_client = <rest_framework.test.APIClient object at 0x7f9528f9c760>
+admin = <MyUser: TestAdmin>
+moderator_client = <rest_framework.test.APIClient object at 0x7f9529108790>
+moderator = <MyUser: TestModerator>
+user_client = <rest_framework.test.APIClient object at 0x7f95291089a0>
+user = <MyUser: TestModerator>
+
+    def test_10_01_users_me_patch(self, django_user_model, admin_client,
+                                  admin, moderator_client, moderator,
+                                  user_client, user):
+        data = {'bio': 'description'}
+    
+        for client, user in (
+                (admin_client, admin),
+                (moderator_client, moderator),
+                (user_client, user)
+        ):
+            response = client.patch('/api/v1/users/me/', data=data)
+>           assert response.status_code == HTTPStatus.OK, (
+                'Проверьте, что PATCH-запрос к `/api/v1/users/me/` доступен '
+                'пользователям всех ролей и возвращает ответ со статусом 200.'
+            )
+E           AssertionError: Проверьте, что PATCH-запрос к `/api/v1/users/me/` доступен пользователям всех ролей и возвращает ответ со статусом 200.
+E           assert 403 == <HTTPStatus.OK: 200>
+E             +403
+E             -<HTTPStatus.OK: 200>
+
+tests/test_01_users.py:506: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+____ Test01UserAPI.test_10_02_users_me_has_field_validation[data0-messege0] ____
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f9528f9c0a0>
+user_client = <rest_framework.test.APIClient object at 0x7f94f81ee670>
+data = {'email': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@yamdb.fake', 'username': 'valid-username'}
+messege = ('Проверьте, что при обработке {request_method}-запроса к `{url}` проверяется длина поля `email`: его содержимое не должно быть длиннее 254 символа.',)
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_10_02_users_me_has_field_validation(self, user_client, data,
+                                                 messege):
+        url = '/api/v1/users/me/'
+        request_method = 'PATCH'
+        response = user_client.patch(url, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(url=url, request_method=request_method)
+        )
+E       AssertionError: Проверьте, что при обработке PATCH-запроса к `/api/v1/users/me/` проверяется длина поля `email`: его содержимое не должно быть длиннее 254 символа.
+E       assert 403 == <HTTPStatus.BAD_REQUEST: 400>
+E         +403
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_01_users.py:526: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+____ Test01UserAPI.test_10_02_users_me_has_field_validation[data1-messege1] ____
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f9519409ca0>
+user_client = <rest_framework.test.APIClient object at 0x7f9529145a30>
+data = {'email': 'valid-email@yamdb.fake', 'username': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
+messege = ('Проверьте, что при обработке {request_method}-запроса к `{url}` проверяется длина поля `username`: его содержимое не должно быть длиннее 150 символов.',)
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_10_02_users_me_has_field_validation(self, user_client, data,
+                                                 messege):
+        url = '/api/v1/users/me/'
+        request_method = 'PATCH'
+        response = user_client.patch(url, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(url=url, request_method=request_method)
+        )
+E       AssertionError: Проверьте, что при обработке PATCH-запроса к `/api/v1/users/me/` проверяется длина поля `username`: его содержимое не должно быть длиннее 150 символов.
+E       assert 403 == <HTTPStatus.BAD_REQUEST: 400>
+E         +403
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_01_users.py:526: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+____ Test01UserAPI.test_10_02_users_me_has_field_validation[data2-messege2] ____
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f95291453a0>
+user_client = <rest_framework.test.APIClient object at 0x7f95290f5ee0>
+data = {'email': 'valid-email@yamdb.fake', 'username': '|-|aTa|_|_|a'}
+messege = ('Проверьте, что при обработке {request_method}-запроса к `{url}` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\\w.@+-]+\\z',)
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_10_02_users_me_has_field_validation(self, user_client, data,
+                                                 messege):
+        url = '/api/v1/users/me/'
+        request_method = 'PATCH'
+        response = user_client.patch(url, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(url=url, request_method=request_method)
+        )
+E       AssertionError: Проверьте, что при обработке PATCH-запроса к `/api/v1/users/me/` содержание поля `username` проверяется на соответствие паттерну, указанному в спецификации: ^[\w.@+-]+\z
+E       assert 403 == <HTTPStatus.BAD_REQUEST: 400>
+E         +403
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_01_users.py:526: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+____ Test01UserAPI.test_10_02_users_me_has_field_validation[data3-messege3] ____
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f95194af8b0>
+user_client = <rest_framework.test.APIClient object at 0x7f95194afc40>
+data = {'email': 'valid-email@yamdb.fake', 'first_name': 'toolonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', 'username': 'validname'}
+messege = ('Проверьте, что при обработке POST-запроса к `{url}` проверяется длина поля `first_name`: его содержимое не должно быть длиннее 150 символов.',)
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_10_02_users_me_has_field_validation(self, user_client, data,
+                                                 messege):
+        url = '/api/v1/users/me/'
+        request_method = 'PATCH'
+        response = user_client.patch(url, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(url=url, request_method=request_method)
+        )
+E       AssertionError: Проверьте, что при обработке POST-запроса к `/api/v1/users/me/` проверяется длина поля `first_name`: его содержимое не должно быть длиннее 150 символов.
+E       assert 403 == <HTTPStatus.BAD_REQUEST: 400>
+E         +403
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_01_users.py:526: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+____ Test01UserAPI.test_10_02_users_me_has_field_validation[data4-messege4] ____
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f95194affd0>
+user_client = <rest_framework.test.APIClient object at 0x7f952938c2b0>
+data = {'email': 'valid-email@yamdb.fake', 'last_name': 'toolonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', 'username': 'validname'}
+messege = ('Проверьте, что при обработке POST-запроса к `{url}` проверяется длина поля `last_name`: его содержимое не должно быть длиннее 150 символов.',)
+
+    @pytest.mark.parametrize(
+        'data,messege', invalid_data_for_user_patch_and_creation
+    )
+    def test_10_02_users_me_has_field_validation(self, user_client, data,
+                                                 messege):
+        url = '/api/v1/users/me/'
+        request_method = 'PATCH'
+        response = user_client.patch(url, data=data)
+>       assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            messege[0].format(url=url, request_method=request_method)
+        )
+E       AssertionError: Проверьте, что при обработке POST-запроса к `/api/v1/users/me/` проверяется длина поля `last_name`: его содержимое не должно быть длиннее 150 символов.
+E       assert 403 == <HTTPStatus.BAD_REQUEST: 400>
+E         +403
+E         -<HTTPStatus.BAD_REQUEST: 400>
+
+tests/test_01_users.py:526: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+_______ Test01UserAPI.test_10_03_users_me_patch_change_role_not_allowed ________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x7f9529161160>
+user_client = <rest_framework.test.APIClient object at 0x7f9519566c40>
+user = <MyUser: TestUser>, django_user_model = <class 'reviews.models.MyUser'>
+
+    def test_10_03_users_me_patch_change_role_not_allowed(self,
+                                                          user_client,
+                                                          user,
+                                                          django_user_model):
+        data = {
+            'first_name': 'New user first name',
+            'last_name': 'New user last name',
+            'bio': 'new user bio',
+        }
+        response = user_client.patch('/api/v1/users/me/', data=data)
+>       assert response.status_code == HTTPStatus.OK, (
+            'Проверьте, что PATCH-запрос пользователя с ролью `user` к '
+            '`/api/v1/users/me/` возвращает ответ со статусом 200.'
+        )
+E       AssertionError: Проверьте, что PATCH-запрос пользователя с ролью `user` к `/api/v1/users/me/` возвращает ответ со статусом 200.
+E       assert 403 == <HTTPStatus.OK: 200>
+E         +403
+E         -<HTTPStatus.OK: 200>
+
+tests/test_01_users.py:540: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Forbidden: /api/v1/users/me/
+___________________ Test05ReviewAPI.test_01_review_not_auth ____________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x7f9529108880>
+client = <django.test.client.Client object at 0x7f9529299970>
+admin_client = <rest_framework.test.APIClient object at 0x7f95194f63a0>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f9529122e50>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f9529122ca0>
+moderator = <MyUser: TestModerator>
+
+    def test_01_review_not_auth(self, client, admin_client, admin, user_client,
+                                user, moderator_client, moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_05_review.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f95194f63a0>, title_id = 9
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/9/reviews/
+_____________________ Test05ReviewAPI.test_02_review_post ______________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x7f9529122220>
+admin_client = <rest_framework.test.APIClient object at 0x7f95195737c0>
+user_client = <rest_framework.test.APIClient object at 0x7f9529329040>
+moderator_client = <rest_framework.test.APIClient object at 0x7f9529329b80>
+admin = <MyUser: TestAdmin>
+
+    def test_02_review_post(self, admin_client, user_client,
+                            moderator_client, admin):
+        titles, _, _ = create_titles(admin_client)
+        title_0_reviews_count = 0
+    
+        data = {}
+        response = user_client.post(
+            f'/api/v1/titles/{titles[0]["id"]}/reviews/', data=data
+        )
+        assert response.status_code == HTTPStatus.BAD_REQUEST, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит некорректные '
+            'данные - должен вернуться ответ со статусом 400.'
+        )
+    
+        post_data = {
+            'text': 'Неочень',
+            'score': 5
+        }
+>       create_single_review(
+            admin_client,
+            titles[0]["id"],
+            post_data['text'],
+            post_data['score']
+        )
+
+tests/test_05_review.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f95195737c0>, title_id = 11
+text = 'Неочень', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/11/reviews/
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/11/reviews/
+__________________ Test05ReviewAPI.test_03_review_detail_get ___________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x7f94f800d9d0>
+client = <django.test.client.Client object at 0x7f951952ff70>
+admin_client = <rest_framework.test.APIClient object at 0x7f9529117b20>
+admin = <MyUser: TestAdmin>, user = <MyUser: TestUser>
+user_client = <rest_framework.test.APIClient object at 0x7f951952f2b0>
+moderator = <MyUser: TestModerator>
+moderator_client = <rest_framework.test.APIClient object at 0x7f95194b0e50>
+
+    def test_03_review_detail_get(self, client, admin_client, admin, user,
+                                  user_client, moderator, moderator_client):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_05_review.py:227: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f9529117b20>, title_id = 13
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/13/reviews/
+__________________ Test05ReviewAPI.test_04_review_detail_user __________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x7f951952f490>
+admin_client = <rest_framework.test.APIClient object at 0x7f95294105b0>
+admin = <MyUser: TestAdmin>, user = <MyUser: TestUser>
+user_client = <rest_framework.test.APIClient object at 0x7f94f8254f40>
+moderator = <MyUser: TestModerator>
+moderator_client = <rest_framework.test.APIClient object at 0x7f94f8254dc0>
+
+    def test_04_review_detail_user(self, admin_client, admin, user,
+                                   user_client, moderator, moderator_client):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_05_review.py:257: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f95294105b0>, title_id = 15
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/15/reviews/
+__________ Test05ReviewAPI.test_05_reviews_detail_moderator_and_admin __________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x7f95290b35e0>
+admin_client = <rest_framework.test.APIClient object at 0x7f951957e340>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f951957e4c0>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f951957ed90>
+moderator = <MyUser: TestModerator>
+
+    def test_05_reviews_detail_moderator_and_admin(self, admin_client, admin,
+                                                   user_client, user,
+                                                   moderator_client,
+                                                   moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+        url_template = '/api/v1/titles/{title_id}/reviews/{review_id}/'
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_05_review.py:349: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f951957e340>, title_id = 17
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/17/reviews/
+__________________ Test06CommentAPI.test_01_comment_not_auth ___________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f951957e1c0>
+client = <django.test.client.Client object at 0x7f9519572370>
+admin_client = <rest_framework.test.APIClient object at 0x7f9529558910>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f95295582e0>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f9529558400>
+moderator = <MyUser: TestModerator>
+
+    def test_01_comment_not_auth(self, client, admin_client, admin,
+                                 user_client, user, moderator_client,
+                                 moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_06_comment.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f9529558910>, title_id = 19
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/19/reviews/
+_______________________ Test06CommentAPI.test_02_comment _______________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f9519572c70>
+admin_client = <rest_framework.test.APIClient object at 0x7f9529682ee0>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f9529161850>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f9529161e50>
+moderator = <MyUser: TestModerator>
+
+    def test_02_comment(self, admin_client, admin, user_client, user,
+                        moderator_client, moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       reviews, titles = create_reviews(admin_client, author_map)
+
+tests/test_06_comment.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f9529682ee0>, title_id = 21
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/21/reviews/
+_________________ Test06CommentAPI.test_03_comment_detail_get __________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f9529117b80>
+client = <django.test.client.Client object at 0x7f9519402cd0>
+admin_client = <rest_framework.test.APIClient object at 0x7f9519566730>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f9519566fd0>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f95291016a0>
+moderator = <MyUser: TestModerator>
+
+    def test_03_comment_detail_get(self, client, admin_client, admin,
+                                   user_client, user, moderator_client,
+                                   moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       comments, reviews, titles = create_comments(admin_client, author_map)
+
+tests/test_06_comment.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:267: in create_comments
+    reviews, titles = create_reviews(admin_client, authors_map)
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f9519566730>, title_id = 23
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/23/reviews/
+__________ Test06CommentAPI.test_04_comment_detail__user_patch_delete __________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f9519402130>
+admin_client = <rest_framework.test.APIClient object at 0x7f95194afbb0>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f94f81cda30>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f94f81cdfa0>
+moderator = <MyUser: TestModerator>
+
+    def test_04_comment_detail__user_patch_delete(self, admin_client, admin,
+                                                  user_client, user,
+                                                  moderator_client,
+                                                  moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       comments, reviews, titles = create_comments(admin_client, author_map)
+
+tests/test_06_comment.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:267: in create_comments
+    reviews, titles = create_reviews(admin_client, authors_map)
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f95194afbb0>, title_id = 25
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/25/reviews/
+_________ Test06CommentAPI.test_05_comment_detail_admin_and_moderator __________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f9528ff8b50>
+admin_client = <rest_framework.test.APIClient object at 0x7f9528f9c460>
+admin = <MyUser: TestAdmin>
+user_client = <rest_framework.test.APIClient object at 0x7f9519741e50>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f95197416d0>
+moderator = <MyUser: TestModerator>
+
+    def test_05_comment_detail_admin_and_moderator(self, admin_client, admin,
+                                                   user_client, user,
+                                                   moderator_client,
+                                                   moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       comments, reviews, titles = create_comments(admin_client, author_map)
+
+tests/test_06_comment.py:260: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:267: in create_comments
+    reviews, titles = create_reviews(admin_client, authors_map)
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f9528f9c460>, title_id = 27
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/27/reviews/
+_______________ Test06CommentAPI.test_06_comment_detail_not_auth _______________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x7f9528f9cca0>
+admin_client = <rest_framework.test.APIClient object at 0x7f95195735e0>
+admin = <MyUser: TestAdmin>
+client = <django.test.client.Client object at 0x7f9529138220>
+user_client = <rest_framework.test.APIClient object at 0x7f95291383a0>
+user = <MyUser: TestUser>
+moderator_client = <rest_framework.test.APIClient object at 0x7f95291385e0>
+moderator = <MyUser: TestModerator>
+
+    def test_06_comment_detail_not_auth(self, admin_client, admin, client,
+                                        user_client, user, moderator_client,
+                                        moderator):
+        author_map = {
+            admin: admin_client,
+            user: user_client,
+            moderator: moderator_client
+        }
+>       comments, reviews, titles = create_comments(admin_client, author_map)
+
+tests/test_06_comment.py:329: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/utils.py:267: in create_comments
+    reviews, titles = create_reviews(admin_client, authors_map)
+tests/utils.py:252: in create_reviews
+    response = create_single_review(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <rest_framework.test.APIClient object at 0x7f95195735e0>, title_id = 29
+text = 'review number 1', score = 5
+
+    def create_single_review(client, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client.post(
+            f'/api/v1/titles/{title_id}/reviews/', data=data
+        )
+>       assert response.status_code == HTTPStatus.CREATED, (
+            'Если POST-запрос авторизованного пользователя к '
+            '`/api/v1/titles/{title_id}/reviews/` содержит корректные данные - '
+            'должен вернуться ответ со статусом 201.'
+        )
+E       AssertionError: Если POST-запрос авторизованного пользователя к `/api/v1/titles/{title_id}/reviews/` содержит корректные данные - должен вернуться ответ со статусом 201.
+
+tests/utils.py:158: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:224 Bad Request: /api/v1/titles/29/reviews/
+--------------------------- Captured stderr teardown ---------------------------
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+=============================== warnings summary ===============================
+api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:321
+  /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/django/db/models/base.py:321: RuntimeWarning: Model 'reviews.review' was already registered. Reloading models is not advised as it can lead to inconsistencies, most notably with related models.
+    new_class._meta.apps.register_model(new_class._meta.app_label, new_class)
+
+tests/test_01_users.py::Test01UserAPI::test_04_users_get_admin
+tests/test_01_users.py::Test01UserAPI::test_04_02_users_get_search
+  /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'reviews.models.MyUser'> QuerySet.
+    paginator = self.django_paginator_class(queryset, page_size)
+
+tests/test_02_category.py::Test02CategoryAPI::test_01_category_not_auth
+tests/test_02_category.py::Test02CategoryAPI::test_02_category_with_admin_user
+tests/test_02_category.py::Test02CategoryAPI::test_04_category_delete_admin
+  /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'reviews.models.Category'> QuerySet.
+    paginator = self.django_paginator_class(queryset, page_size)
+
+tests/test_03_genre.py::Test03GenreAPI::test_01_genre_not_auth
+tests/test_03_genre.py::Test03GenreAPI::test_02_genre
+tests/test_03_genre.py::Test03GenreAPI::test_04_genres_delete
+  /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'reviews.models.Genre'> QuerySet.
+    paginator = self.django_paginator_class(queryset, page_size)
+
+tests/test_04_title.py::Test04TitleAPI::test_01_title_not_auth
+tests/test_04_title.py::Test04TitleAPI::test_02_title_admin
+tests/test_04_title.py::Test04TitleAPI::test_03_titles_detail
+  /Users/boris/Desktop/Dev2 /Dev11/api_yamdb/api_yamdb/venv/lib/python3.9/site-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'reviews.models.Title'> QuerySet.
+    paginator = self.django_paginator_class(queryset, page_size)
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_00_user_registration.py::Test00UserRegistration::test_00_singup_length_and_simbols_validation[data2-messege2]
+FAILED tests/test_00_user_registration.py::Test00UserRegistration::test_00_admin_create_user_length_and_simbols_validation[data2-messege2]
+FAILED tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_same_email_restricted
+FAILED tests/test_01_users.py::Test01UserAPI::test_04_02_users_get_search - A...
+FAILED tests/test_01_users.py::Test01UserAPI::test_05_04_users_post_user_superuser
+FAILED tests/test_01_users.py::Test01UserAPI::test_07_05_users_username_put_not_allowed
+FAILED tests/test_01_users.py::Test01UserAPI::test_08_04_users_username_delete_superuser
+FAILED tests/test_01_users.py::Test01UserAPI::test_09_users_me_get - Assertio...
+FAILED tests/test_01_users.py::Test01UserAPI::test_09_02_users_me_delete_not_allowed
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_01_users_me_patch - Ass...
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data0-messege0]
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data1-messege1]
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data2-messege2]
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data3-messege3]
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_02_users_me_has_field_validation[data4-messege4]
+FAILED tests/test_01_users.py::Test01UserAPI::test_10_03_users_me_patch_change_role_not_allowed
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_01_review_not_auth - As...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_02_review_post - Assert...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail_get - ...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_04_review_detail_user
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_05_reviews_detail_moderator_and_admin
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_02_comment - Assertio...
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_03_comment_detail_get
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_04_comment_detail__user_patch_delete
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_05_comment_detail_admin_and_moderator
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_06_comment_detail_not_auth
+================= 27 failed, 50 passed, 12 warnings in 15.73s ==================
