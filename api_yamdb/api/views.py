@@ -63,7 +63,7 @@ class TitleViewSet(viewsets.ModelViewSet):
         select_related('category').prefetch_related('genre')
     serializer_class = TitleSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
-    permission_classes = пш
+    permission_classes = (OnlyRead | IsAdmin,)
     filterset_fields = ('name', 'year', 'category__slug', 'genre__slug',)
     ordering_fields = ['name', 'year']
 
