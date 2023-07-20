@@ -1,15 +1,13 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from reviews.models import Category, Genre, Title, Comment, Review, MyUser
+from reviews.models import Category, Comment, Genre, MyUser, Review, Title
 from reviews.validators import validate_year
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import (ModelSerializer,
                                         SlugRelatedField, IntegerField)
 from django.core.validators import (MaxValueValidator, MinValueValidator)
-
-ERROR_REVIEW_AUTHOR_UNIQUE = (
-    'Нельзя оставлять несколько отзывов на одно произведение'
-)
+from .constants import ERROR_REVIEW_AUTHOR_UNIQUE
 
 
 class ReviewSerializer(ModelSerializer):
@@ -141,9 +139,7 @@ class TitleSerializer(serializers.ModelSerializer):
 
     genre = GenreSerializer(many=True)
     category = CategorySerializer()
-    rating = serializers.IntegerField(
-        source='reviews__score__avg', read_only=True
-    )
+    rating = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Title
@@ -164,3 +160,17 @@ class TitleCreateAndUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Title
         fields = '__all__'
+
+    def create(self, validated_data):
+        title = super().create(validated_data)
+        return title
+
+    def update(self, instance, validated_data):
+        title = super().update(instance, validated_data)
+        return title
+
+    def validate_genre(self, value):
+        if not value:
+            raise serializers.ValidationError(
+                "Список жанров не может быть пустым.")
+        return value
