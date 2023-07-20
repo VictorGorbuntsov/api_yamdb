@@ -158,6 +158,7 @@ class Review(TextAuthorDateBaseModel):
     title = models.ForeignKey(
         Title,
         on_delete=models.CASCADE,
+        related_name='reviews',
         verbose_name='Произведение'
     )
     score = models.PositiveSmallIntegerField(
@@ -167,7 +168,6 @@ class Review(TextAuthorDateBaseModel):
 
     class Meta(TextAuthorDateBaseModel.Meta):
         verbose_name = 'Отзыв'
-        related_name = 'reviews',
         verbose_name_plural = 'Отзывы'
         constraints = [
             models.UniqueConstraint(
