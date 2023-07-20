@@ -6,21 +6,24 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db import IntegrityError
 from django.db.models import Avg
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, status, mixins, viewsets
-from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.decorators import action, api_view
 from rest_framework.permissions import (AllowAny,
                                         IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
-from api.serializers import (CategorySerializer, GenreSerializer, MeSerializer,
-                             MyUserSerializer, SignUpSerializer,
+from api.serializers import (CategorySerializer, GenreSerializer,
+                             CustomUserSerializer, SignUpSerializer,
                              TitleCreateAndUpdateSerializer, TitleSerializer,
                              TokenSerializer,
                              CommentSerializer, ReviewSerializer,)
-from reviews.models import Category, Genre, MyUser, Title, Review
+from reviews.models import Category, Genre, CustomUser, Title, Review
+
+ADMIN_MAIL = settings.ADMIN_EMAIL
 
 
 class CategoryViewSet(viewsets.GenericViewSet,
@@ -131,10 +134,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, title=title)
 
 
-class MyUserViewSet(viewsets.ModelViewSet):
+class CustomUserViewSet(viewsets.ModelViewSet):
     """Вьюсет для Юзера"""
-    queryset = MyUser.objects.all()
-    serializer_class = MyUserSerializer
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
     permission_classes = (IsAdmin,)
     pagination_class = PageNumberPagination
     filter_backends = (filters.SearchFilter,)
@@ -150,19 +153,19 @@ class MyUserViewSet(viewsets.ModelViewSet):
     )
     def me(self, request):
         """Функция для эндпоинта 'users/me"""
-        user = get_object_or_404(MyUser, username=self.request.user)
+        user = get_object_or_404(CustomUser, username=request.user.username)
         if request.method == 'GET':
-            serializer = MeSerializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'PATCH':
-            serializer = MeSerializer(user, data=request.data, partial=True)
+            serializer = CustomUserSerializer(user)
+        if request.method == 'PATCH':
+            serializer = CustomUserSerializer(user,
+                                              data=request.data,
+                                              partial=True)
             serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            serializer.save(role=self.request.user.role)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
 def sign_up(request):
     """Функция для запроса кода доступа"""
     serializer = SignUpSerializer(data=request.data)
@@ -170,7 +173,7 @@ def sign_up(request):
     email = serializer.validated_data['email']
     username = serializer.validated_data['username']
     try:
-        user, create = MyUser.objects.get_or_create(
+        user, create = CustomUser.objects.get_or_create(
             username=username,
             email=email
         )
@@ -185,23 +188,51 @@ def sign_up(request):
     send_mail(
         'Регистрация',
         f'Ваш код для регистрации: {code}',
-        from_email='admin@yamdb.com',
+        from_email=ADMIN_MAIL,
         recipient_list=(user.email,),
         fail_silently=False
     )
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+# при использовании валидации на повторный ник и почту
+# в сериализаторе не проходят тесты.
+# Разобраться в чем ошибка не смог
+
+
+# @api_view(['POST'])
+# def sign_up(request):
+#     serializer = SignUpSerializer(data=request.data)
+#     serializer.is_valid(raise_exception=True)
+#     email = serializer.validated_data['email']
+#     username = serializer.validated_data['username']
+#     user, create = CustomUser.objects.get_or_create(
+#         username=username,
+#         email=email
+#     )
+#     code = default_token_generator.make_token(user)
+#     user.confirmation_code = code
+#     user.save()
+#     send_mail(
+#         'Регистрация',
+#         f'Ваш код для регистрации: {code}',
+#         from_email=ADMIN_MAIL,
+#         recipient_list=(user.email,),
+#         fail_silently=False
+#     )
+#     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def get_token(request):
     """Функция для получения токена"""
     serializer = TokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     username = serializer.validated_data['username']
     code = serializer.validated_data['confirmation_code']
-    user = get_object_or_404(MyUser, username=username)
+    user = get_object_or_404(CustomUser, username=username)
     if default_token_generator.check_token(user, code):
         token = str(AccessToken.for_user(user))
         return Response({'token': token}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response('Введен некорректный код доступа',
+                    status=status.HTTP_400_BAD_REQUEST)

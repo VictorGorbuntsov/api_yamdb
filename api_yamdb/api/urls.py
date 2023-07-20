@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 from .views import (CategoryViewSet, GenreViewSet,
-                    MyUserViewSet, TitleViewSet,
+                    CustomUserViewSet, TitleViewSet,
                     ReviewViewSet, CommentViewSet,
                     get_token, sign_up)
 
@@ -10,7 +10,7 @@ URL_REVIEW = r'titles/(?P<title_id>\d+)/reviews'
 
 router = SimpleRouter()
 
-router.register(r'users', MyUserViewSet, basename='users')
+router.register(r'users', CustomUserViewSet, basename='users')
 router.register(r'categories', CategoryViewSet, basename='categories')
 router.register(r'genres', GenreViewSet, basename='genres')
 router.register(r'titles', TitleViewSet, basename='titles')

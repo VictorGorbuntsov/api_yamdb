@@ -1,25 +1,37 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import (MaxValueValidator,
-                                    RegexValidator,
                                     MinValueValidator)
+from .validators import validate_username
+from api.constants import (USERNAME_MAX_LENGTH,
+                           EMAIL_MAX_LENGTH,
+                           CONFIRMATION_CODE_MAX_LENGTH)
+
+ADMIN = 'admin'
+MODERATOR = 'moderator'
+USER = 'user'
 
 USER_ROLES = (
-    ('user', 'Пользователь'),
-    ('moderator', 'Модератор'),
-    ('admin', 'Администратор'),
+    (ADMIN, 'Admin'),
+    (MODERATOR, 'Moderator'),
+    (USER, 'User'),
 )
 
 
-class MyUser(AbstractUser):
+def get_len_role(users):
+    start_len = 0
+    for i in users:
+        if len(i[0]) > start_len:
+            start_len = len(i[0])
+    return start_len
+
+
+class CustomUser(AbstractUser):
     username = models.CharField(
-        max_length=150,
+        max_length=USERNAME_MAX_LENGTH,
         unique=True,
         verbose_name='Имя пользователя',
-        validators=[RegexValidator(
-            regex=r'^[\w.@+-]+$',
-            message='Имя пользователя содержит недопустимый символ'
-        )]
+        validators=[validate_username]
     )
 
     bio = models.TextField(
@@ -27,20 +39,20 @@ class MyUser(AbstractUser):
         blank=True
     )
     email = models.EmailField(
-        max_length=254,
+        max_length=EMAIL_MAX_LENGTH,
         unique=True,
         blank=False,
         null=False,
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
-        max_length=20,
+        max_length=get_len_role(USER_ROLES),
         choices=USER_ROLES,
-        default='user',
+        default=USER,
         verbose_name='Роль пользователя'
     )
     confirmation_code = models.CharField(
-        max_length=300,
+        max_length=CONFIRMATION_CODE_MAX_LENGTH,
         blank=True,
         verbose_name='Код входа'
     )
@@ -53,25 +65,12 @@ class MyUser(AbstractUser):
         return self.username
 
     @property
-    def is_user(self):
-        if self.role == 'user':
-            return True
-        else:
-            return False
+    def is_admin(self):
+        return self.role == ADMIN or self.is_superuser
 
     @property
     def is_moderator(self):
-        if self.role == 'moderator':
-            return True
-        else:
-            return False
-
-    @property
-    def is_admin(self):
-        if self.role == 'admin' or self.is_superuser:
-            return True
-        else:
-            return False
+        return self.role == MODERATOR
 
 
 class Category(models.Model):
@@ -132,7 +131,7 @@ class TextAuthorDateBaseModel(models.Model):
         verbose_name='Текст'
     )
     author = models.ForeignKey(
-        MyUser,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='%(class)ss',
         verbose_name='Автор'
