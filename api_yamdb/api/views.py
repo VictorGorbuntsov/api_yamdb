@@ -90,31 +90,14 @@ class CommentViewSet(ModelViewSet):
         return get_object_or_404(Review, id=self.kwargs.get('review_id'))
 
     def get_queryset(self):
-        review = self.get_review_object()
-        return review.comments.all()
+        return self.get_review_object().comments.all()
 
     def perform_create(self, serializer):
-        title = get_object_or_404(Title, id=self.kwargs['title_id'])
-        review = get_object_or_404(title.reviews, id=self.kwargs['review_id'])
+
+        review_id = self.kwargs['review_id']
+        review = get_object_or_404(Review, id=review_id)
+
         serializer.save(author=self.request.user, review=review)
-
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    """Представление отзывов."""
-
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
-    permission_classes = (IsOwner,)
-
-    filter_backends = (filters.OrderingFilter,)
-
-    def get_queryset(self):
-        title = get_object_or_404(Title, pk=self.kwargs.get('title_id'))
-        return title.reviews.all()
-
-    def perform_create(self, serializer):
-        title = get_object_or_404(Title, pk=self.kwargs.get('title_id'))
-        serializer.save(author=self.request.user, title=title)
 
 
 class MyUserViewSet(viewsets.ModelViewSet):

@@ -138,8 +138,8 @@ class TextAuthorDateBaseModel(models.Model):
     author = models.ForeignKey(
         MyUser,
         on_delete=models.CASCADE,
-        related_name='%(class)ss',
-        verbose_name='Автор'
+        verbose_name='Автор',
+        related_name='%(class)ss'
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата публикации',
@@ -150,26 +150,24 @@ class TextAuthorDateBaseModel(models.Model):
         ordering = ('-pub_date',)
         abstract = True
 
-    def str(self):
-        return (
-            f'{self.author} - {self.pub_date} - {self.text[:100]}'
-        )
+    def __str__(self):
+        return f'{self.author} - {self.pub_date} - {self.text[:100]}'
 
 
 class Review(TextAuthorDateBaseModel):
     title = models.ForeignKey(
         Title,
         on_delete=models.CASCADE,
-        related_name='reviews',
         verbose_name='Произведение'
     )
-    score = models.IntegerField(
+    score = models.PositiveSmallIntegerField(
         verbose_name='Оценка произведения',
         validators=(MinValueValidator(1), MaxValueValidator(10))
     )
 
     class Meta(TextAuthorDateBaseModel.Meta):
         verbose_name = 'Отзыв'
+        related_name = 'reviews',
         verbose_name_plural = 'Отзывы'
         constraints = [
             models.UniqueConstraint(
