@@ -2,21 +2,21 @@ from rest_framework import permissions
 
 
 class IsOwner(permissions.BasePermission):
+    """Доступ только владельцу записи."""
     def has_permission(self, request, view):
         return (request.method in permissions.SAFE_METHODS
                 or request.user.is_authenticated)
 
     def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        if not request.user.is_authenticated:
-            return False
-        return (obj.author == request.user
+        return (request.method in permissions.SAFE_METHODS
+                or request.user.is_authenticated and obj.author == request.user
                 or request.user.is_moderator
                 or request.user.is_admin)
 
 
 class Moderator(permissions.BasePermission):
+    """Доступ только модератор."""
+
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.is_moderator
 
@@ -25,6 +25,8 @@ class Moderator(permissions.BasePermission):
 
 
 class IsAdmin(permissions.BasePermission):
+    """Доступ только администратор."""
+
     def has_permission(self, request, view):
         return (
             request.user.is_authenticated
@@ -35,15 +37,9 @@ class IsAdmin(permissions.BasePermission):
         return request.user.is_admin or request.user.is_superuser
 
 
-class Author(permissions.BasePermission):
-    def has_permission(self, request, view):
-        return request.user.is_authenticated
-
-    def has_object_permission(self, request, view, obj):
-        return obj.author == request.user
-
-
 class OnlyRead(permissions.BasePermission):
+    """Доступ только для безопасных методов"""
+
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS
 

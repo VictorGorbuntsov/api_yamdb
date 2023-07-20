@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import (MaxValueValidator,
                                     RegexValidator,
                                     MinValueValidator)
+from reviews.validators import validate_year
 
 USER_ROLES = (
     ('user', 'Пользователь'),
@@ -74,37 +75,40 @@ class MyUser(AbstractUser):
             return False
 
 
-class Category(models.Model):
+class BaseCategory(models.Model):
     name = models.CharField(
-        'Категория',
-        max_length=200,
+        'Название',
+        max_length=256,
         unique=True
     )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=50)
+
+    class Meta:
+        abstract = True
+        ordering = ['name']
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
-class Genre(models.Model):
-    name = models.CharField(
-        'Жанр',
-        max_length=200,
-        unique=True
-    )
-    slug = models.SlugField(unique=True)
+class Category(BaseCategory):
+    class Meta(BaseCategory.Meta):
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
-    def __str__(self):
-        return self.slug
+
+class Genre(BaseCategory):
+    class Meta(BaseCategory.Meta):
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
 
 
 class Title(models.Model):
     """Наименование и атрибуты произведений."""
 
-    name = models.CharField(max_length=150, unique=True)
-    year = models.IntegerField('Дата выпуска')
-    rating = models.FloatField(null=True)
-    description = models.TextField(max_length=300, blank=True)
+    name = models.CharField(max_length=256, blank=False)
+    year = models.FloatField(validators=[validate_year], db_index=True)
+    description = models.TextField('Описание')
     genre = models.ManyToManyField(
         Genre,
         through='GenreTitle',
