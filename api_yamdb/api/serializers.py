@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import get_object_or_404
+from reviews.models import Category, Genre, Title, Comment, Review, MyUser
 from reviews.models import Category, Comment, Genre, MyUser, Review, Title
 from reviews.validators import validate_year
 from rest_framework.exceptions import ValidationError
@@ -24,12 +24,11 @@ class ReviewSerializer(ModelSerializer):
         fields = ('id', 'text', 'author', 'score', 'pub_date',)
 
     def validate(self, data):
-        if self.context.get('request').method != 'POST':
-            return data
-        reviewer = self.context.get('request').user
-        if get_object_or_404(
-                Title, id=self.context.get('view').kwargs.get('title_id')
-        ).reviews.filter(author=reviewer):
+        title = self.context.get('view').kwargs.get('title_id')
+        author = self.context.get('request').user
+        if (self.context.get('request').method == 'POST'
+                and Review.objects.filter(author=author,
+                                          title=title).exists()):
             raise ValidationError(ERROR_REVIEW_AUTHOR_UNIQUE)
         return data
 
