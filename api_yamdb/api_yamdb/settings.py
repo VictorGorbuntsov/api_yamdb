@@ -1,10 +1,11 @@
 from pathlib import Path
 import os
 from datetime import timedelta
+# from rest_framework.decorators import permission_classes
+# from rest_framework.permissions import (AllowAny)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -23,10 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'reviews',
-    'api',
     'rest_framework_simplejwt',
     'django_filters',
+    'reviews',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -108,14 +109,12 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ((BASE_DIR / 'static/'),)
 
-AUTH_USER_MODEL = 'reviews.MyUser'
+AUTH_USER_MODEL = 'reviews.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.AllowAny',
     ],
-    # 'DEFAULT_FILTER_BACKENDS': [
-    #     'django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -131,7 +130,10 @@ SIMPLE_JWT = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
-
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
+ADMIN_EMAIL = 'admin@yamdb.com'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# PERMISSION = permission_classes([AllowAny])

@@ -1,25 +1,38 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import (MaxValueValidator,
-                                    RegexValidator,
                                     MinValueValidator)
+from .validators import validate_username, validate_year
+from api.constants import (USERNAME_MAX_LENGTH,
+                           EMAIL_MAX_LENGTH,
+                           CONFIRMATION_CODE_MAX_LENGTH)
+
+ADMIN = 'admin'
+MODERATOR = 'moderator'
+USER = 'user'
+
 
 USER_ROLES = (
-    ('user', 'Пользователь'),
-    ('moderator', 'Модератор'),
-    ('admin', 'Администратор'),
+    (ADMIN, 'Admin'),
+    (MODERATOR, 'Moderator'),
+    (USER, 'User'),
 )
 
 
-class MyUser(AbstractUser):
+def get_len_role(users):
+    start_len = 0
+    for i in users:
+        if len(i[0]) > start_len:
+            start_len = len(i[0])
+    return start_len
+
+
+class CustomUser(AbstractUser):
     username = models.CharField(
-        max_length=150,
+        max_length=USERNAME_MAX_LENGTH,
         unique=True,
         verbose_name='Имя пользователя',
-        validators=[RegexValidator(
-            regex=r'^[\w.@+-]+$',
-            message='Имя пользователя содержит недопустимый символ'
-        )]
+        validators=[validate_username]
     )
 
     bio = models.TextField(
@@ -27,20 +40,20 @@ class MyUser(AbstractUser):
         blank=True
     )
     email = models.EmailField(
-        max_length=254,
+        max_length=EMAIL_MAX_LENGTH,
         unique=True,
         blank=False,
         null=False,
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
-        max_length=20,
+        max_length=get_len_role(USER_ROLES),
         choices=USER_ROLES,
-        default='user',
+        default=USER,
         verbose_name='Роль пользователя'
     )
     confirmation_code = models.CharField(
-        max_length=300,
+        max_length=CONFIRMATION_CODE_MAX_LENGTH,
         blank=True,
         verbose_name='Код входа'
     )
@@ -53,58 +66,48 @@ class MyUser(AbstractUser):
         return self.username
 
     @property
-    def is_user(self):
-        if self.role == 'user':
-            return True
-        else:
-            return False
+    def is_admin(self):
+        return self.role == ADMIN or self.is_superuser
 
     @property
     def is_moderator(self):
-        if self.role == 'moderator':
-            return True
-        else:
-            return False
-
-    @property
-    def is_admin(self):
-        if self.role == 'admin' or self.is_superuser:
-            return True
-        else:
-            return False
+        return self.role == MODERATOR
 
 
-class Category(models.Model):
+class BaseCategory(models.Model):
     name = models.CharField(
-        'Категория',
-        max_length=200,
+        'Название',
+        max_length=256,
         unique=True
     )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=50)
+
+    class Meta:
+        abstract = True
+        ordering = ['name']
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
-class Genre(models.Model):
-    name = models.CharField(
-        'Жанр',
-        max_length=200,
-        unique=True
-    )
-    slug = models.SlugField(unique=True)
+class Category(BaseCategory):
+    class Meta(BaseCategory.Meta):
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
-    def __str__(self):
-        return self.slug
+
+class Genre(BaseCategory):
+    class Meta(BaseCategory.Meta):
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
 
 
 class Title(models.Model):
     """Наименование и атрибуты произведений."""
 
-    name = models.CharField(max_length=150, unique=True)
-    year = models.IntegerField('Дата выпуска')
-    rating = models.FloatField(null=True)
-    description = models.TextField(max_length=300, blank=True)
+    name = models.CharField(max_length=256, blank=False)
+    year = models.FloatField(validators=[validate_year], db_index=True)
+    description = models.TextField('Описание')
     genre = models.ManyToManyField(
         Genre,
         through='GenreTitle',
@@ -132,10 +135,10 @@ class TextAuthorDateBaseModel(models.Model):
         verbose_name='Текст'
     )
     author = models.ForeignKey(
-        MyUser,
+        CustomUser,
         on_delete=models.CASCADE,
-        related_name='%(class)ss',
-        verbose_name='Автор'
+        verbose_name='Автор',
+        related_name='%(class)ss'
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата публикации',
@@ -146,10 +149,8 @@ class TextAuthorDateBaseModel(models.Model):
         ordering = ('-pub_date',)
         abstract = True
 
-    def str(self):
-        return (
-            f'{self.author} - {self.pub_date} - {self.text[:100]}'
-        )
+    def __str__(self):
+        return f'{self.author} - {self.pub_date} - {self.text[:100]}'
 
 
 class Review(TextAuthorDateBaseModel):
@@ -159,7 +160,7 @@ class Review(TextAuthorDateBaseModel):
         related_name='reviews',
         verbose_name='Произведение'
     )
-    score = models.IntegerField(
+    score = models.PositiveSmallIntegerField(
         verbose_name='Оценка произведения',
         validators=(MinValueValidator(1), MaxValueValidator(10))
     )
