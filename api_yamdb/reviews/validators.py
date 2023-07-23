@@ -6,9 +6,10 @@ import re
 
 def validate_year(value):
     current_year = timezone.now().year
-    if value < 1900 or value > current_year:
+    if value > current_year:
         raise ValidationError(
-            'Неверно указан год, не может быть меньше 1900 и больше текущего.'
+            'Неверно указан год,'
+            ' произведение не может быть написано в будущем. Марти ты ли это?'
         )
 
 

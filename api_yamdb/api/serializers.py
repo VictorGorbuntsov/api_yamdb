@@ -1,15 +1,19 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import get_object_or_404
+# from rest_framework.generics import get_object_or_404
 from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
 from reviews.validators import validate_year, validate_username
+from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
+from reviews.models import Category, Comment, Genre, CustomUser, Review, Title
+from reviews.validators import validate_year
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import (ModelSerializer,
                                         SlugRelatedField, IntegerField)
 from django.core.validators import (MaxValueValidator, MinValueValidator)
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
-from django.contrib.auth.tokens import default_token_generator
-from api.constants import USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH
+# from django.contrib.auth.tokens import default_token_generator
+from api.constants import (USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH,
+                           ERROR_REVIEW_AUTHOR_UNIQUE)
 
 ERROR_REVIEW_AUTHOR_UNIQUE = (
     'Нельзя оставлять несколько отзывов на одно произведение'
@@ -30,12 +34,11 @@ class ReviewSerializer(ModelSerializer):
         fields = ('id', 'text', 'author', 'score', 'pub_date',)
 
     def validate(self, data):
-        if self.context.get('request').method != 'POST':
-            return data
-        reviewer = self.context.get('request').user
-        if get_object_or_404(
-                Title, id=self.context.get('view').kwargs.get('title_id')
-        ).reviews.filter(author=reviewer):
+        title = self.context.get('view').kwargs.get('title_id')
+        author = self.context.get('request').user
+        if (self.context.get('request').method == 'POST'
+                and Review.objects.filter(author=author,
+                                          title=title).exists()):
             raise ValidationError(ERROR_REVIEW_AUTHOR_UNIQUE)
         return data
 
@@ -159,9 +162,7 @@ class TitleSerializer(serializers.ModelSerializer):
 
     genre = GenreSerializer(many=True)
     category = CategorySerializer()
-    rating = serializers.IntegerField(
-        source='reviews__score__avg', read_only=True
-    )
+    rating = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Title
@@ -182,3 +183,17 @@ class TitleCreateAndUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Title
         fields = '__all__'
+
+    def create(self, validated_data):
+        title = super().create(validated_data)
+        return title
+
+    def update(self, instance, validated_data):
+        title = super().update(instance, validated_data)
+        return title
+
+    def validate_genre(self, value):
+        if not value:
+            raise serializers.ValidationError(
+                "Список жанров не может быть пустым.")
+        return value
