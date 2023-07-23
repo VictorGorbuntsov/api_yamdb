@@ -1,9 +1,8 @@
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
-
 from .constants import URL_COMMENTS, URL_REVIEW
 from .views import (CategoryViewSet, GenreViewSet,
-                    MyUserViewSet, TitleViewSet,
+                    CustomUserViewSet, TitleViewSet,
                     ReviewViewSet, CommentViewSet,
                     get_token, sign_up)
 
@@ -11,7 +10,7 @@ prefix = 'v1/'
 auth_prefix = prefix + 'auth/'
 router = SimpleRouter()
 
-router.register(r'users', MyUserViewSet, basename='users')
+router.register(r'users', CustomUserViewSet, basename='users')
 router.register(r'categories', CategoryViewSet, basename='categories')
 router.register(r'genres', GenreViewSet, basename='genres')
 router.register(r'titles', TitleViewSet, basename='titles')

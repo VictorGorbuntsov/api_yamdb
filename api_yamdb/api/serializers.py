@@ -1,13 +1,23 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from reviews.models import Category, Genre, Title, Comment, Review, MyUser
-from reviews.models import Category, Comment, Genre, MyUser, Review, Title
+# from rest_framework.generics import get_object_or_404
+from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
+from reviews.validators import validate_year, validate_username
+from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
+from reviews.models import Category, Comment, Genre, CustomUser, Review, Title
 from reviews.validators import validate_year
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import (ModelSerializer,
                                         SlugRelatedField, IntegerField)
 from django.core.validators import (MaxValueValidator, MinValueValidator)
-from .constants import ERROR_REVIEW_AUTHOR_UNIQUE
+from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
+# from django.contrib.auth.tokens import default_token_generator
+from api.constants import (USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH,
+                           ERROR_REVIEW_AUTHOR_UNIQUE)
+
+ERROR_REVIEW_AUTHOR_UNIQUE = (
+    'Нельзя оставлять несколько отзывов на одно произведение'
+)
 
 
 class ReviewSerializer(ModelSerializer):
@@ -44,11 +54,17 @@ class CommentSerializer(ModelSerializer):
         fields = ('id', 'text', 'author', 'pub_date',)
 
 
-class MyUserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     """Сериализатор для Юзера"""
+    username = serializers.CharField(
+        required=True,
+        max_length=USERNAME_MAX_LENGTH,
+        validators=[validate_username,
+                    UniqueValidator(queryset=CustomUser.objects.all())]
+    )
 
     class Meta:
-        model = MyUser
+        model = CustomUser
         fields = (
             'username',
             'email',
@@ -57,59 +73,66 @@ class MyUserSerializer(serializers.ModelSerializer):
             'bio',
             'role',
         )
+
+        validators = [
+            UniqueTogetherValidator(
+                queryset=CustomUser.objects.all(),
+                fields=('username', 'email'))
+        ]
+
+
+class MyUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'confirmation_code')
+        extra_kwargs = {
+            'username': {'validators': []},
+            'email': {'validators': []}
+        }
 
 
 class SignUpSerializer(serializers.Serializer):
     """Сериализатор отправки письма."""
 
-    email = serializers.EmailField(max_length=254, required=True)
-    username = serializers.RegexField(
-        regex=r'^[\w.@+-]+$',
-        max_length=150,
-        required=True
+    email = serializers.EmailField(max_length=EMAIL_MAX_LENGTH, required=True)
+    username = serializers.CharField(
+        required=True,
+        max_length=USERNAME_MAX_LENGTH,
+        validators=[validate_username]
     )
 
-    def validate(self, data):
-        """Имя me использовать запрещено"""
-        if data['username'].lower() == 'me':
-            raise ValidationError('Нельзя использовать слово "me" в имени')
-        return (data)
+    # def create(self, validated_data):
+    #     """Создание токена"""
+    #     user = super().create(validated_data)
+    #     user.confirmation_code = default_token_generator.make_token(user)
+    #     user.save()
+    #     return user
+
+    # def validate(self, data):
+    #     """Проверка уникальности Username и Email"""
+    #     if CustomUser.objects.filter(username=data.get('username')):
+    #         raise serializers.ValidationError(
+    #             'Пользователь с таким именем уже существует'
+    #         )
+    #     if CustomUser.objects.filter(email=data.get('email')):
+    #         raise serializers.ValidationError(
+    #             'Пользователь с таким email уже существует'
+    #         )
+    #     return data
 
 
 class TokenSerializer(serializers.Serializer):
     """Cериализатор получения токена"""
-    username = serializers.RegexField(
-        regex=r'^[\w.@+-]+$',
+    username = serializers.CharField(
+        required=True,
         max_length=150,
-        required=True
+        validators=[validate_username]
     )
     confirmation_code = serializers.CharField(required=True)
 
     class Meta:
-        model = MyUser
+        model = CustomUser
         fields = ('username', 'confirmation_code',)
-
-
-class MeSerializer(serializers.ModelSerializer):
-    """Сериализатор для эндпоинта users/me"""
-    username = serializers.RegexField(
-        regex=r'^[\w.@+-]+$',
-        max_length=150,
-        required=True
-    )
-
-    role = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = MyUser
-        fields = (
-            'username',
-            'email',
-            'first_name',
-            'last_name',
-            'bio',
-            'role',
-        )
 
 
 class CategorySerializer(serializers.ModelSerializer):
