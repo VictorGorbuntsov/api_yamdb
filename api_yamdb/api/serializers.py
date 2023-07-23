@@ -8,6 +8,7 @@ from rest_framework.serializers import (ModelSerializer,
                                         SlugRelatedField, IntegerField)
 from django.core.validators import (MaxValueValidator, MinValueValidator)
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
+from django.contrib.auth.tokens import default_token_generator
 from api.constants import USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH
 
 ERROR_REVIEW_AUTHOR_UNIQUE = (
@@ -77,6 +78,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
         ]
 
 
+class MyUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'confirmation_code')
+        extra_kwargs = {
+            'username': {'validators': []},
+            'email': {'validators': []}
+        }
+
+
 class SignUpSerializer(serializers.Serializer):
     """Сериализатор отправки письма."""
 
@@ -86,6 +97,13 @@ class SignUpSerializer(serializers.Serializer):
         max_length=USERNAME_MAX_LENGTH,
         validators=[validate_username]
     )
+
+    # def create(self, validated_data):
+    #     """Создание токена"""
+    #     user = super().create(validated_data)
+    #     user.confirmation_code = default_token_generator.make_token(user)
+    #     user.save()
+    #     return user
 
     # def validate(self, data):
     #     """Проверка уникальности Username и Email"""

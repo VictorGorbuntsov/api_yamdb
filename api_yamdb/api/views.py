@@ -194,6 +194,7 @@ def sign_up(request):
     )
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 # при использовании валидации на повторный ник и почту
 # в сериализаторе не проходят тесты.
 # Разобраться в чем ошибка не смог
