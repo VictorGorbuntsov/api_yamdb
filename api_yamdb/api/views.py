@@ -6,7 +6,6 @@ from api.serializers import (CategorySerializer, CommentSerializer,
                              TokenSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
-from django.db import IntegrityError
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -126,21 +125,10 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def sign_up(request):
-    """Функция для запроса кода доступа"""
     serializer = SignUpSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
-    email = serializer.validated_data['email']
-    username = serializer.validated_data['username']
-    try:
-        user, create = CustomUser.objects.get_or_create(
-            username=username,
-            email=email
-        )
-    except IntegrityError:
-        return Response(
-            'Такой логин или email уже существуют',
-            status=status.HTTP_400_BAD_REQUEST
-        )
+    serializer.save()
+    user = get_object_or_404(CustomUser, username=request.data.get('username'))
     code = default_token_generator.make_token(user)
     user.confirmation_code = code
     user.save()
@@ -152,34 +140,6 @@ def sign_up(request):
         fail_silently=False
     )
     return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-# при использовании валидации на повторный ник и почту
-# в сериализаторе не проходят тесты.
-# Разобраться в чем ошибка не смог
-
-
-# @api_view(['POST'])
-# def sign_up(request):
-#     serializer = SignUpSerializer(data=request.data)
-#     serializer.is_valid(raise_exception=True)
-#     email = serializer.validated_data['email']
-#     username = serializer.validated_data['username']
-#     user, create = CustomUser.objects.get_or_create(
-#         username=username,
-#         email=email
-#     )
-#     code = default_token_generator.make_token(user)
-#     user.confirmation_code = code
-#     user.save()
-#     send_mail(
-#         'Регистрация',
-#         f'Ваш код для регистрации: {code}',
-#         from_email=ADMIN_MAIL,
-#         recipient_list=(user.email,),
-#         fail_silently=False
-#     )
-#     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])

@@ -81,24 +81,35 @@ class SignUpSerializer(serializers.Serializer):
         validators=[validate_username]
     )
 
-    # def create(self, validated_data):
-    #     """Создание токена"""
-    #     user = super().create(validated_data)
-    #     user.confirmation_code = default_token_generator.make_token(user)
-    #     user.save()
-    #     return user
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email')
 
-    # def validate(self, data):
-    #     """Проверка уникальности Username и Email"""
-    #     if CustomUser.objects.filter(username=data.get('username')):
-    #         raise serializers.ValidationError(
-    #             'Пользователь с таким именем уже существует'
-    #         )
-    #     if CustomUser.objects.filter(email=data.get('email')):
-    #         raise serializers.ValidationError(
-    #             'Пользователь с таким email уже существует'
-    #         )
-    #     return data
+    def create(self, validated_data):
+        """Создание кода доступа"""
+        user, created = CustomUser.objects.get_or_create(**validated_data)
+        if created:
+            user.save()
+            return user
+        else:
+            return validated_data
+
+    def validate(self, data):
+        """Проверка уникальности Username и Email"""
+
+        if not CustomUser.objects.filter(
+            username=data.get("username"), email=data.get("email")
+        ).exists():
+            if CustomUser.objects.filter(username=data.get("username")):
+                raise serializers.ValidationError(
+                    "Пользователь с таким именем уже существует"
+                )
+            if CustomUser.objects.filter(email=data.get("email")):
+                raise serializers.ValidationError(
+                    "Пользователь с таким еmail уже существует"
+                )
+
+        return data
 
 
 class TokenSerializer(serializers.Serializer):
