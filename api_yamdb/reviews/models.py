@@ -19,14 +19,6 @@ USER_ROLES = (
 )
 
 
-def get_len_role(users):
-    start_len = 0
-    for i in users:
-        if len(i[0]) > start_len:
-            start_len = len(i[0])
-    return start_len
-
-
 class CustomUser(AbstractUser):
     username = models.CharField(
         max_length=USERNAME_MAX_LENGTH,
@@ -47,7 +39,7 @@ class CustomUser(AbstractUser):
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
-        max_length=get_len_role(USER_ROLES),
+        max_length=max(len(role[1]) for role in USER_ROLES),
         choices=USER_ROLES,
         default=USER,
         verbose_name='Роль пользователя'
