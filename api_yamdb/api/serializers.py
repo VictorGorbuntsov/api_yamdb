@@ -34,11 +34,11 @@ class ReviewSerializer(ModelSerializer):
         fields = ('id', 'text', 'author', 'score', 'pub_date',)
 
     def validate(self, data):
-        title = self.context.get('view').kwargs.get('title_id')
-        author = self.context.get('request').user
         if (self.context.get('request').method == 'POST'
-                and Review.objects.filter(author=author,
-                                          title=title).exists()):
+                and Review.objects.filter(
+                    author=self.context.get('request').user,
+                    title=self.context.get('view').kwargs.get('title_id'))
+                .exists()):
             raise ValidationError(ERROR_REVIEW_AUTHOR_UNIQUE)
         return data
 
