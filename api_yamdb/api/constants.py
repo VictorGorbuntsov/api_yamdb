@@ -6,3 +6,4 @@ URL_REVIEW = r'titles/(?P<title_id>\d+)/reviews'
 ERROR_REVIEW_AUTHOR_UNIQUE = (
     'Нельзя оставлять несколько отзывов на одно произведение'
 )
+MAX_LENGHT = 256

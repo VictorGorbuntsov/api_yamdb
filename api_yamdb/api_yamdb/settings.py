@@ -1,8 +1,7 @@
-from pathlib import Path
 import os
 from datetime import timedelta
-# from rest_framework.decorators import permission_classes
-# from rest_framework.permissions import (AllowAny)
+from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
