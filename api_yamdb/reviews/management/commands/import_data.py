@@ -1,11 +1,8 @@
 import csv
 
 from django.core.management.base import BaseCommand
-
-from reviews.models import (
-    Category, Comment, Genre, Review, Title, User, GenreTitle
-)
-
+from reviews.models import (Category, Comment, Genre, GenreTitle, Review,
+                            Title, User)
 
 CSV_PATH = 'static/data/'
 FOREIGN_KEY_FIELDS = ('category', 'author')
