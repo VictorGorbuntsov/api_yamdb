@@ -1,11 +1,10 @@
+from api.constants import (CONFIRMATION_CODE_MAX_LENGTH, EMAIL_MAX_LENGTH,
+                           USERNAME_MAX_LENGTH, MAX_LENGHT)
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import (MaxValueValidator,
-                                    MinValueValidator)
+
 from .validators import validate_username, validate_year
-from api.constants import (USERNAME_MAX_LENGTH,
-                           EMAIL_MAX_LENGTH,
-                           CONFIRMATION_CODE_MAX_LENGTH)
 
 ADMIN = 'admin'
 MODERATOR = 'moderator'
@@ -69,14 +68,14 @@ class CustomUser(AbstractUser):
 class BaseCategory(models.Model):
     name = models.CharField(
         'Название',
-        max_length=256,
+        max_length=MAX_LENGHT,
         unique=True
     )
     slug = models.SlugField(unique=True, max_length=50)
 
     class Meta:
         abstract = True
-        ordering = ['name']
+        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -98,7 +97,10 @@ class Title(models.Model):
     """Наименование и атрибуты произведений."""
 
     name = models.CharField(max_length=256, blank=False)
-    year = models.FloatField(validators=[validate_year], db_index=True)
+    year = models.PositiveSmallIntegerField(
+        validators=[validate_year],
+        db_index=True
+    )
     description = models.TextField('Описание')
     genre = models.ManyToManyField(
         Genre,
@@ -130,7 +132,7 @@ class TextAuthorDateBaseModel(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         verbose_name='Автор',
-        related_name='%(class)ss'
+
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата публикации',

@@ -1,23 +1,13 @@
+from api.constants import (EMAIL_MAX_LENGTH, ERROR_REVIEW_AUTHOR_UNIQUE,
+                           USERNAME_MAX_LENGTH)
+from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-# from rest_framework.generics import get_object_or_404
-from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
-from reviews.validators import validate_year, validate_username
-from reviews.models import Category, Genre, Title, Comment, Review, CustomUser
-from reviews.models import Category, Comment, Genre, CustomUser, Review, Title
-from reviews.validators import validate_year
-from rest_framework.exceptions import ValidationError
-from rest_framework.serializers import (ModelSerializer,
-                                        SlugRelatedField, IntegerField)
-from django.core.validators import (MaxValueValidator, MinValueValidator)
+from rest_framework.serializers import (IntegerField, ModelSerializer,
+                                        SlugRelatedField)
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
-# from django.contrib.auth.tokens import default_token_generator
-from api.constants import (USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH,
-                           ERROR_REVIEW_AUTHOR_UNIQUE)
-
-ERROR_REVIEW_AUTHOR_UNIQUE = (
-    'Нельзя оставлять несколько отзывов на одно произведение'
-)
+from reviews.models import Category, Comment, CustomUser, Genre, Review, Title
+from reviews.validators import validate_username, validate_year
 
 
 class ReviewSerializer(ModelSerializer):
@@ -185,13 +175,12 @@ class TitleCreateAndUpdateSerializer(serializers.ModelSerializer):
         model = Title
         fields = '__all__'
 
-    def create(self, validated_data):
-        title = super().create(validated_data)
-        return title
-
-    def update(self, instance, validated_data):
-        title = super().update(instance, validated_data)
-        return title
+    def to_representation(self, value):
+        if isinstance(value, Title):
+            serializer = TitleSerializer(value)
+        else:
+            raise Exception('Что-то пошло не так.')
+        return serializer.data
 
     def validate_genre(self, value):
         if not value:

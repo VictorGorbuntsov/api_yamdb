@@ -1,34 +1,29 @@
-from rest_framework.generics import get_object_or_404
-from rest_framework_simplejwt.tokens import AccessToken
-from .permissions import IsAdmin, OnlyRead, IsOwner
-from rest_framework.viewsets import ModelViewSet
-from .Mixins import ListDestroyCreateWithFilters
-from rest_framework.permissions import (IsAuthenticatedOrReadOnly)
-from rest_framework.viewsets import ModelViewSet
 import django_filters
+from api.serializers import (CategorySerializer, CommentSerializer,
+                             CustomUserSerializer, GenreSerializer,
+                             ReviewSerializer, SignUpSerializer,
+                             TitleCreateAndUpdateSerializer, TitleSerializer,
+                             TokenSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
-from django.conf import settings
 from django.shortcuts import get_object_or_404
-from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action, api_view
+from rest_framework.generics import get_object_or_404
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
-from rest_framework import filters, status, viewsets
-from rest_framework.decorators import action, api_view
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from api.serializers import (CategorySerializer, GenreSerializer,
-                             CustomUserSerializer, SignUpSerializer,
-                             TitleCreateAndUpdateSerializer, TitleSerializer,
-                             TokenSerializer,
-                             CommentSerializer, ReviewSerializer,)
-from reviews.models import Category, Genre, CustomUser, Title, Review
+from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.tokens import AccessToken
+from reviews.models import Category, CustomUser, Genre, Review, Title
 
-ADMIN_MAIL = settings.ADMIN_EMAIL
+from .filters import TitleFilter
+from .mixins import ListDestroyCreateWithFilters
+from .permissions import IsAdmin, IsOwner, OnlyRead
+from api_yamdb.settings import ADMIN_EMAIL
 
 
 class CategoryViewSet(ListDestroyCreateWithFilters):
@@ -43,15 +38,6 @@ class GenreViewSet(ListDestroyCreateWithFilters):
 
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
-
-
-class TitleFilter(django_filters.FilterSet):
-    genre = django_filters.CharFilter(field_name='genre__slug')
-    category = django_filters.CharFilter(field_name='category__slug')
-
-    class Meta:
-        model = Title
-        fields = ('name', 'year', 'genre', 'category')
 
 
 class TitleViewSet(viewsets.ModelViewSet):
@@ -74,6 +60,7 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(ModelViewSet):
+    """Представление отзывов."""
     serializer_class = ReviewSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwner,)
 
@@ -103,24 +90,6 @@ class CommentViewSet(ModelViewSet):
         review = get_object_or_404(Review, id=review_id)
 
         serializer.save(author=self.request.user, review=review)
-
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    """Представление отзывов."""
-
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
-    permission_classes = (IsOwner,)
-
-    filter_backends = (filters.OrderingFilter,)
-
-    def get_queryset(self):
-        title = get_object_or_404(Title, pk=self.kwargs.get('title_id'))
-        return title.reviews.all()
-
-    def perform_create(self, serializer):
-        title = get_object_or_404(Title, pk=self.kwargs.get('title_id'))
-        serializer.save(author=self.request.user, title=title)
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -166,7 +135,7 @@ def sign_up(request):
     send_mail(
         'Регистрация',
         f'Ваш код для регистрации: {code}',
-        from_email=ADMIN_MAIL,
+        from_email=ADMIN_EMAIL,
         recipient_list=(user.email,),
         fail_silently=False
     )
