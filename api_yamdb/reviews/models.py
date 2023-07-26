@@ -1,5 +1,5 @@
 from api.constants import (CONFIRMATION_CODE_MAX_LENGTH, EMAIL_MAX_LENGTH,
-                           USERNAME_MAX_LENGTH, MAX_LENGHT)
+                           MAX_LENGHT, USERNAME_MAX_LENGTH)
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
