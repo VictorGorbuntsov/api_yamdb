@@ -6,7 +6,6 @@ from .views import (CategoryViewSet, CommentViewSet, CustomUserViewSet,
                     GenreViewSet, ReviewViewSet, TitleViewSet, get_token,
                     sign_up)
 
-
 router = SimpleRouter()
 
 router.register(r'users', CustomUserViewSet, basename='users')

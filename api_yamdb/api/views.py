@@ -20,10 +20,11 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import AccessToken
 from reviews.models import Category, CustomUser, Genre, Review, Title
 
+from api_yamdb.settings import ADMIN_EMAIL
+
 from .filters import TitleFilter
 from .mixins import ListDestroyCreateWithFilters
 from .permissions import IsAdmin, IsOwner, OnlyRead
-from api_yamdb.settings import ADMIN_EMAIL
 
 
 class CategoryViewSet(ListDestroyCreateWithFilters):
