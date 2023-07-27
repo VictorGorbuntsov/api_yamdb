@@ -34,7 +34,6 @@ class ReviewSerializer(ModelSerializer):
         return data
 
 
-
 class CommentSerializer(ModelSerializer):
     author = SlugRelatedField(
         read_only=True,
