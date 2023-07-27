@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
         verbose_name='Адрес электронной почты',
     )
     role = models.CharField(
-        max_length=max(len(role[1]) for role in USER_ROLES),
+        max_length=max(len(user_role) for role, user_role in USER_ROLES),
         choices=USER_ROLES,
         default=USER,
         verbose_name='Роль пользователя'

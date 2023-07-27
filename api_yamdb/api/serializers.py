@@ -91,8 +91,7 @@ class SignUpSerializer(serializers.Serializer):
         user, created = CustomUser.objects.get_or_create(**validated_data)
         if created:
             return user
-        else:
-            return validated_data
+        return validated_data
 
     def validate(self, data):
         """Проверка уникальности Username и Email"""
