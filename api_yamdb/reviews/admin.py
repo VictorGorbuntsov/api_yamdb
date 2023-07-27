@@ -22,14 +22,15 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Title)
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'year', 'rating',
-                    'description', 'новое_поле')
-    search_fields = ('name', 'year', 'rating',)
-    list_filter = ('year', 'rating',)
+    list_display = ('pk', 'name', 'year', 'description', 'get_genre_names')
+    search_fields = ('name', 'year',)
+    readonly_fields = ('get_genre_names',)
+    list_filter = ('year',)
     empty_value_display = '-пусто-'
 
     def get_genre_names(self, obj):
         return ', '.join([genre.name for genre in obj.genre.all()])
+    get_genre_names.short_description = 'Жанры'
 
 
 @admin.register(Review)

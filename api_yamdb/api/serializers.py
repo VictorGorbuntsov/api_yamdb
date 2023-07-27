@@ -1,5 +1,3 @@
-from api.constants import (EMAIL_MAX_LENGTH, ERROR_REVIEW_AUTHOR_UNIQUE,
-                           USERNAME_MAX_LENGTH)
 from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -8,6 +6,9 @@ from rest_framework.serializers import (IntegerField, ModelSerializer,
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 from reviews.models import Category, Comment, CustomUser, Genre, Review, Title
 from reviews.validators import validate_username, validate_year
+
+from api.constants import (EMAIL_MAX_LENGTH, ERROR_REVIEW_AUTHOR_UNIQUE,
+                           USERNAME_MAX_LENGTH)
 
 
 class ReviewSerializer(ModelSerializer):
@@ -90,24 +91,22 @@ class SignUpSerializer(serializers.Serializer):
         """Создание кода доступа"""
         user, created = CustomUser.objects.get_or_create(**validated_data)
         if created:
-            user.save()
             return user
-        else:
-            return validated_data
+        return validated_data
 
     def validate(self, data):
         """Проверка уникальности Username и Email"""
 
         if not CustomUser.objects.filter(
-            username=data.get("username"), email=data.get("email")
+            username=data.get('username'), email=data.get('email')
         ).exists():
-            if CustomUser.objects.filter(username=data.get("username")):
+            if CustomUser.objects.filter(username=data.get('username')):
                 raise serializers.ValidationError(
-                    "Пользователь с таким именем уже существует"
+                    'Пользователь с таким именем уже существует'
                 )
             if CustomUser.objects.filter(email=data.get("email")):
                 raise serializers.ValidationError(
-                    "Пользователь с таким еmail уже существует"
+                    'Пользователь с таким еmail уже существует'
                 )
 
         return data
@@ -117,7 +116,7 @@ class TokenSerializer(serializers.Serializer):
     """Cериализатор получения токена"""
     username = serializers.CharField(
         required=True,
-        max_length=150,
+        max_length=USERNAME_MAX_LENGTH,
         validators=[validate_username]
     )
     confirmation_code = serializers.CharField(required=True)
@@ -177,14 +176,10 @@ class TitleCreateAndUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, value):
-        if isinstance(value, Title):
-            serializer = TitleSerializer(value)
-        else:
-            raise Exception('Что-то пошло не так.')
-        return serializer.data
+        return TitleSerializer(value).data
 
     def validate_genre(self, value):
         if not value:
             raise serializers.ValidationError(
-                "Список жанров не может быть пустым.")
+                'Список жанров не может быть пустым.')
         return value
