@@ -1,9 +1,9 @@
-from api.constants import (CONFIRMATION_CODE_MAX_LENGTH, EMAIL_MAX_LENGTH,
-                           MAX_LENGHT, USERNAME_MAX_LENGTH)
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
+from api.constants import (CONFIRMATION_CODE_MAX_LENGTH, EMAIL_MAX_LENGTH,
+                           MAX_LENGHT, USERNAME_MAX_LENGTH)
 from .validators import validate_username, validate_year
 
 ADMIN = 'admin'
@@ -97,7 +97,7 @@ class Title(models.Model):
     """Наименование и атрибуты произведений."""
 
     name = models.CharField(max_length=256, blank=False)
-    year = models.PositiveSmallIntegerField(
+    year = models.SmallIntegerField(
         validators=[validate_year],
         db_index=True
     )
@@ -151,7 +151,6 @@ class Review(TextAuthorDateBaseModel):
     title = models.ForeignKey(
         Title,
         on_delete=models.CASCADE,
-        related_name='reviews',
         verbose_name='Произведение'
     )
     score = models.PositiveSmallIntegerField(
@@ -160,6 +159,7 @@ class Review(TextAuthorDateBaseModel):
     )
 
     class Meta(TextAuthorDateBaseModel.Meta):
+        default_related_name = 'reviews'
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
         constraints = [
@@ -174,10 +174,11 @@ class Comment(TextAuthorDateBaseModel):
     review = models.ForeignKey(
         Review,
         on_delete=models.CASCADE,
-        related_name='comments',
         verbose_name='Отзыв'
     )
 
     class Meta(TextAuthorDateBaseModel.Meta):
+        default_related_name = 'comments'
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+

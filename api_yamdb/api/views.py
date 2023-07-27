@@ -1,8 +1,3 @@
-from api.serializers import (CategorySerializer, CommentSerializer,
-                             CustomUserSerializer, GenreSerializer,
-                             ReviewSerializer, SignUpSerializer,
-                             TitleCreateAndUpdateSerializer, TitleSerializer,
-                             TokenSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
@@ -19,7 +14,13 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import AccessToken
 from reviews.models import Category, CustomUser, Genre, Review, Title
 
+from api.serializers import (CategorySerializer, CommentSerializer,
+                             CustomUserSerializer, GenreSerializer,
+                             ReviewSerializer, SignUpSerializer,
+                             TitleCreateAndUpdateSerializer, TitleSerializer,
+                             TokenSerializer)
 from api_yamdb.settings import ADMIN_EMAIL
+
 
 from .filters import TitleFilter
 from .mixins import ListDestroyCreateWithFilters
@@ -129,12 +130,11 @@ def sign_up(request):
     serializer.is_valid(raise_exception=True)
     serializer.save()
     user = get_object_or_404(CustomUser, username=request.data.get('username'))
-    code = default_token_generator.make_token(user)
-    user.confirmation_code = code
+    user.confirmation_code = default_token_generator.make_token(user)
     user.save()
     send_mail(
         'Регистрация',
-        f'Ваш код для регистрации: {code}',
+        f'Ваш код для регистрации: {default_token_generator.make_token(user)}',
         from_email=ADMIN_EMAIL,
         recipient_list=(user.email,),
         fail_silently=False
@@ -143,7 +143,6 @@ def sign_up(request):
 
 
 @api_view(['POST'])
-# @permission_classes([AllowAny])
 def get_token(request):
     """Функция для получения токена"""
     serializer = TokenSerializer(data=request.data)
