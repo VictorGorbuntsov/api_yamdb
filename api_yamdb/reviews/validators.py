@@ -14,7 +14,7 @@ def validate_year(value):
 
 
 def validate_username(value):
-    banned_chars = re.findall(r'[^a-zA-Z0-9.@+-_]', value)
+    banned_chars = re.sub(r'[a-zA-Z0-9.@+-_]', '', value)
     if banned_chars:
         raise ValidationError(
             f'Нельзя использовать символы: {", ".join(banned_chars)} в имени')

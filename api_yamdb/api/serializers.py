@@ -91,8 +91,7 @@ class SignUpSerializer(serializers.Serializer):
         if created:
             user.save()
             return user
-        else:
-            return validated_data
+        return validated_data
 
     def validate(self, data):
         """Проверка уникальности Username и Email"""
