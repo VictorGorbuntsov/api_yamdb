@@ -181,4 +181,3 @@ class Comment(TextAuthorDateBaseModel):
         default_related_name = 'comments'
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
-
