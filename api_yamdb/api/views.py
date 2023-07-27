@@ -1,4 +1,3 @@
-import django_filters
 from api.serializers import (CategorySerializer, CommentSerializer,
                              CustomUserSerializer, GenreSerializer,
                              ReviewSerializer, SignUpSerializer,
