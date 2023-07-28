@@ -4,9 +4,9 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import (IntegerField, ModelSerializer,
                                         SlugRelatedField)
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
+
 from reviews.models import Category, Comment, CustomUser, Genre, Review, Title
 from reviews.validators import validate_username, validate_year
-
 from api.constants import (EMAIL_MAX_LENGTH, ERROR_REVIEW_AUTHOR_UNIQUE,
                            USERNAME_MAX_LENGTH)
 

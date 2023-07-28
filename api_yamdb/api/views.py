@@ -12,8 +12,8 @@ from rest_framework.permissions import (IsAuthenticated,
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import AccessToken
-from reviews.models import Category, CustomUser, Genre, Review, Title
 
+from reviews.models import Category, CustomUser, Genre, Review, Title
 from api.serializers import (CategorySerializer, CommentSerializer,
                              CustomUserSerializer, GenreSerializer,
                              ReviewSerializer, SignUpSerializer,

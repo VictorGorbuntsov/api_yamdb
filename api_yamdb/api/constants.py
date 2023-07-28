@@ -7,3 +7,4 @@ ERROR_REVIEW_AUTHOR_UNIQUE = (
     'Нельзя оставлять несколько отзывов на одно произведение'
 )
 MAX_LENGHT = 256
+INVALID_SYMBOLS = r'[a-zA-Z0-9.@+-_]'
